@@ -544,12 +544,11 @@
       <!-- Page Title-->
       <div class="page-title">
         <div class="container">
-          <div class="column">
-            <h1  id="Product_Name4">Single Product - <span id="Product_Name1"></span></h1>
-            <h1>Single Product - <span id="Product_Name2"></span></h1>
-            <h1>Single Product - <span id="Product_Name3"></span></h1>
-          </div>
-          <div class="column">
+				<div class="column">
+					<h1>Single Product - <span id="Product_Name"></span></h1>
+					<h1>Single Product - <span id="Product_Name2"></span></h1>
+				</div>
+				<div class="column">
             <ul class="breadcrumbs">
               <li><a href="index.html">Home</a>
               </li>
@@ -965,21 +964,20 @@
     <script src="js/scripts.min.js"></script>
   </body>
   
-      <script> 
-    	
-      $(document).ready(function() {
-    	  $("#Product_Name1").text("amit");
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    	});
-      
-   <!-- function GetURLParameter(sParam)
-    {
+<script> 
+
+$(document).ready(function(){
+   $("#Product_Name1").text("amit");
+   setURLParameter();
+});
+
+function GetURLParameter(sParam) {
         var sPageURL = window.location.search.substring(1);
-        alert(sPageURL);
 
         var url = window.location.href;
-        alert(url);
-        
+
         var sURLVariables = sPageURL.split('&');
         for (var i = 0; i < sURLVariables.length; i++) 
         {
@@ -989,26 +987,15 @@
                 return sParameterName[1];
             }
         }
-    }​
-    
-    function setURLParameter()
-    {
-    	var Product_Name = GetURLParameter('Product_Name');
-    	document.getElementById("Product_Name").innerHTML = Product_Name;
-    }-->
-    
-    window.onload = function() {
-
-        document.getElementById("Product_Name1").innerHTML = "amitttttttttttttttttttt";
-        document.getElementById("Product_Name4").textContent = "amitttttttttttttttttttt";
-        
-        $("#Product_Name1").text("amitttttttttttttttttttt1");
     }
-    
-    var yourvar='amitttttttttttttttttttt';
 
-    document.getElementById('Product_Name2').innerHTML = 'amit';
-    document.getElementById("Product_Name3").textContent="amitttttttttttttttttttt";
-    
-    </script>
+    function setURLParameter() {
+        var Product_Name = GetURLParameter('Product_Name');
+        document.getElementById("Product_Name").innerHTML = Product_Name;
+
+        var Product_Name = GetURLParameter('Product_Name2');
+        document.getElementById("Product_Name2").innerHTML = Product_Name;
+    }
+
+</script>
 </html>
