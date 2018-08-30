@@ -25,7 +25,11 @@
     <script src="js/modernizr.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link href="css/Cart.css" rel="stylesheet" type="text/css" />
+  	<script src="js/Products.js"></script>
+  	<script src="js/Cart.js"></script>
+  
   </head>
   <!-- Body-->
   <body >
@@ -545,9 +549,10 @@
       <div class="page-title">
         <div class="container">
 				<div class="column">
-					<h1>Single Product - <span id="Product_Name"></span></h1>
-					<h1>Single Product - <span id="Product_Name2"></span></h1>
+					<h1>Single Product - <span id="productsDiv"></span></h1>
+					<h1>Single Product - <span id="Product_ID2"></span></h1>
 				</div>
+				<div id="Product_ID" ></div>
 				<div class="column">
             <ul class="breadcrumbs">
               <li><a href="index.html">Home</a>
@@ -969,7 +974,6 @@
 <script> 
 
 $(document).ready(function(){
-   $("#Product_Name1").text("amit");
    setURLParameter();
 });
 
@@ -990,11 +994,11 @@ function GetURLParameter(sParam) {
     }
 
     function setURLParameter() {
-        var Product_Name = GetURLParameter('Product_Name');
-        document.getElementById("Product_Name").innerHTML = Product_Name;
+        var Product_Name = GetURLParameter('Product_ID');
+        document.getElementById("Product_ID").innerHTML = Product_Name;
 
-        var Product_Name = GetURLParameter('Product_Name2');
-        document.getElementById("Product_Name2").innerHTML = Product_Name;
+        var Product_Name = GetURLParameter('Product_ID2');
+        document.getElementById("Product_ID2").innerHTML = Product_Name;
     }
 
 </script>
