@@ -28,8 +28,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<link href="css/Cart.css" rel="stylesheet" type="text/css" />
   	<script src="js/Products_4.js"></script>
-  	<script src="js/Products_5.js"></script>
-  	<script src="js/Cart_7.js"></script>
+  	<script src="js/Products_22.js"></script>
+  	<script src="js/Cart_24.js"></script>
   
    <script>
             $(function(){
@@ -80,7 +80,7 @@
         <div class="row">
           <!-- Poduct Gallery-->
           <div class="col-md-6">
-            <div class="product-gallery"><span class="product-badge text-danger">30% Off</span>
+            <div class="product-gallery"><span class="product-badge text-danger" id="Offer">Offer</span><span class="product-badge text-danger">&nbsp;&nbsp;&nbsp;&nbsp;% Off</span>
               <div class="gallery-wrapper">
                 <div class="gallery-item active"><a href="img/shop/single/01.jpg" data-hash="one" data-size="1000x667"></a></div>
                 <div class="gallery-item"><a href="img/shop/single/02.jpg" data-hash="two" data-size="1000x667"></a></div>
@@ -107,11 +107,11 @@
           <!-- Product Info-->
           <div class="col-md-6">
             <div class="padding-top-2x mt-2 hidden-md-up"></div>
-              <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
-              </div><span class="text-muted align-middle">&nbsp;&nbsp;4.2 | 3 customer reviews</span>
-            <h2 class="padding-top-1x text-normal" id = "Product_Name">Product_Name</h2><span class="h2 d-block">
-              <del class="text-muted text-normal" id = "Product_Price">$68.00</del>&nbsp; $47.60</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus quos ea dolore rem, molestias laudantium et explicabo assumenda fugiat deserunt in, facilis laborum excepturi aliquid nobis ipsam deleniti aut? Aliquid sit hic id velit qui fuga nemo suscipit obcaecati. Officia nisi quaerat minus nulla saepe aperiam sint possimus magni veniam provident.</p>
+              <div class="rating-stars" id = "star_ratings"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
+              </div>&nbsp;<span class="text-muted align-middle" id = "Review_Rating">Review_Rating</span><span class="text-muted align-middle" >&nbsp;| </span><span class="text-muted align-middle" id = "Review_Count">&nbsp;&nbsp;Review_Count</span><span class="text-muted align-middle"> customer reviews</span>
+            <h2 class="padding-top-1x text-normal" id = "Product_Name">Product_Name</h2><span class="h2 d-block" >
+              <del class="text-muted text-normal" id = "Product_Price">Product_Price</del>&nbsp; $<a class="h2" id = "Product_Disc">Product_Disc</a></span>
+            <p id = "Product_Desc">Product_Desc</p>
             <div class="row margin-top-1x">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -152,7 +152,7 @@
               </div>
             </div>
             <div class="pt-1 mb-2"><span class="text-medium">SKU:</span> #21457832</div>
-            <div class="padding-bottom-1x mb-2"><span class="text-medium">Categories:&nbsp;</span><a class="navi-link" href="#">Men’s shoes,</a><a class="navi-link" href="#"> Snickers,</a><a class="navi-link" href="#"> Sport shoes</a></div>
+            <div class="padding-bottom-1x mb-2"><span class="text-medium">Categories:&nbsp;</span><a class="navi-link" href="#" id = "Product_Type">Product_Type</a>,&nbsp;<a class="navi-link" href="#" id = "Product_Sub_Type"> Product_Sub_Type</a></div>
             <hr class="mb-3">
             <div class="d-flex flex-wrap justify-content-between">
               <div class="entry-share mt-2 mb-2"><span class="text-muted">Share:</span>
@@ -174,8 +174,19 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show active" id="description" role="tabpanel">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error blanditiis a, deserunt magnam pariatur quam suscipit quae. Veniam, deserunt reprehenderit quasi hic recusandae itaque omnis fugiat animi architecto facilis repellendus. Commodi dolorem, eius consectetur. Amet maiores nemo at nobi s aspernatur velit, sequi odio, a veritatis inventore autem esse provident in? Placeat, sunt!</p>
-                <p class="mb-30">Iste assumenda, vitae, aliquam excepturi libero quia ullam quisquam tenetur id sint labore. Pariatur praesentium velit, fugit facere maxime voluptates optio qui? Quidem obcaecati necessitatibus rem aspernatur, mollitia, assumenda explicabo numquam minus eos sapiente totam dicta, laborum dolorum! Vitae distinctio quos non ut fugiat.</p>
+                <p id = "Product_Desc1">Product_Desc1</p>
+                <p id = "Product_Desc2">Product_Desc2</p>
+                Dimensions: <a id = "Product_Dimensions">Product_Dimensions</a><p></p>
+                This product is <a id = "Customizable">Customizable</a> Customizable.<p></p>
+                <p id = "Product_Feature_1">Feature_1</p>
+                <p id = "Product_Feature_2">Feature_2</p>
+                <p id = "Product_Feature_3">Feature_3</p>
+                <p id = "Product_Feature_4">Feature_4</p>
+                <p id = "Product_Feature_5">Feature_5</p>
+                Available Count <a id = "Available_Count">Available_Count</a>
+                & Sold count <a id = "Sold_Count">Sold_Count</a>
+                
+                
                 <div class="embed-responsive embed-responsive-16by9">
                   <!-- <iframe class="embed-responsive-item" src="//www.youtube.com/embed/B81qd2v6alw?rel=0" allowfullscreen></iframe> -->
                   
