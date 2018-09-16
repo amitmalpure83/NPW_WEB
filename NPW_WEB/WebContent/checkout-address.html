@@ -118,13 +118,8 @@
                 <div class="form-group">
                   <label for="checkout-country">Country</label>
                   <select class="form-control" id="checkout-country">
-                    <option>Choose country</option>
-                    <option>Australia</option>
-                    <option>Canada</option>
-                    <option>France</option>
-                    <option>Germany</option>
-                    <option>Switzerland</option>
-                    <option>USA</option>
+                    <!-- <option>Choose country</option> -->
+                    <option>Australia</option>                    
                   </select>
                 </div>
               </div>
@@ -133,14 +128,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-city">City</label>
-                  <select class="form-control" id="checkout-city">
-                    <option>Choose city</option>
-                    <option>Amsterdam</option>
-                    <option>Berlin</option>
-                    <option>Geneve</option>
-                    <option>New York</option>
-                    <option>Paris</option>
-                  </select>
+                  <input class="form-control" type="text" id="checkout-city">
                 </div>
               </div>
               <div class="col-sm-6">
@@ -168,7 +156,7 @@
             <hr class="padding-bottom-1x">
             <div class="form-group">
               <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" id="same_address" checked>
+                <input class="custom-control-input" type="checkbox" id="same_address" checked disabled>
                 <label class="custom-control-label" for="same_address">Same as billing address</label>
               </div>
             </div>
