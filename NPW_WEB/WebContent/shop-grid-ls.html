@@ -27,8 +27,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
-    <script src="js/Products_32.js"></script>
-  	<script src="js/Grid_Proc_18.js"></script>
+    <script src="js/Products_33.js"></script>
+  	<script src="js/Grid_Proc_31.js"></script>
   
    	<script>
             $(function(){
@@ -86,9 +86,8 @@
                     <option>Low - High Price</option>
                     <option>High - Low Price</option>
                     <option>Avarage Rating</option>
-                    <option>A - Z Order</option>
-                    <option>Z - A Order</option>
-                  </select><span class="text-muted">Showing:&nbsp;</span><span>1 - 12 items</span>
+                    
+                  </select><span class="text-muted">Showing:&nbsp;</span><span id = "page_numbers">1 - 12 items</span>
                 </div>
               </div>
               <div class="column">
@@ -259,8 +258,8 @@
             <!-- Pagination-->
             <nav class="pagination">
               <div class="column">
-                <ul class="pages">
-                  <li class="active"><a href="#">1</a></li>
+                <ul class="pages" id = "pagination">
+                  <li class="active" ><a href="#">1</a></li>
                   <li><a href="#">2</a></li>
                   <li><a href="#">3</a></li>
                   <li><a href="#">4</a></li>

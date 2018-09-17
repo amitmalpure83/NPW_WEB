@@ -1,6 +1,16 @@
+var order = 'desc';
+var orderCategory = 'Door%20Nameplates';
+var criteria = 'Pop';
+var pageNo = '1';
+
 $( document ).ready(function() {
 	
-	var sParam = 'Filter_ID';
+	//http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=asc&Cri=HLP&Cat=DNP
+	
+	var criteriaParam = 'Cri';
+	var orderParam = 'Ord';
+	var orderCategoryParam = 'Cat';
+	var pageNoParam = 'PN';
 	
 	var sPageURL = window.location.search.substring(1);
 
@@ -12,10 +22,21 @@ $( document ).ready(function() {
     {
         var sParameterName = sURLVariables[i].split('=');
         
-        if (sParameterName[0] == sParam) 
+        if (sParameterName[0] == criteriaParam) 
         {
-        	Product_ID = sParameterName[1];
-        	break;
+        	criteria = sParameterName[1];
+        }
+        else if (sParameterName[0] == orderParam) 
+        {
+        	order = sParameterName[1];
+        }
+        else if (sParameterName[0] == orderCategoryParam) 
+        {
+        	orderCategory = sParameterName[1];
+        }
+        else if (sParameterName[0] == pageNoParam) 
+        {
+        	pageNo = sParameterName[1];
         }
     }
     
@@ -23,7 +44,7 @@ $( document ).ready(function() {
 	
     var productStr = "<div class=\"gutter-sizer\"></div><div class=\"grid-sizer\"></div>";
     
-	for(var i = 0; i < products5.length; i++) 
+	for(var i = ((pageNo -1) * 12); i < products5.length && i < (pageNo * 12); i++) 
 	{
 		var Product_ID 			= products5[i].Product_ID;
 		var Product_Name 		= products5[i].Name;
@@ -75,12 +96,81 @@ $( document ).ready(function() {
 	}
 	
 	document.getElementById("products-grid").innerHTML 		= productStr;
+	document.getElementById("page_numbers").innerHTML 	= ((pageNo -1) * 12 + 1) + " - " + (pageNo * 12) + " items";
 	
+	var paginationStr = "";
+	var pageCnt = 0;
+	
+	for(var i = 1; i <= products5.length; i+= 12) 
+	{
+		pageCnt++;
+		
+		if (i == 1)
+		{
+			paginationStr = "<li class=\"active\" ><a href=\"#\">1</a></li>";
+		}
+		else
+		{
+			paginationStr += "<li ><a href=\"#\">" + pageCnt + "</a></li>";
+		}
+	}
+	
+	document.getElementById("pagination").innerHTML 		= paginationStr;
+
 	});
 
 function compareFun(a, b){
 	
-	return parseInt(b.Sold_Count) - parseInt(a.Sold_Count)
+	if(criteria == 'Pop')
+	{
+		if(order == 'asc')
+		{
+			return parseInt(a.Sold_Count) - parseInt(b.Sold_Count)		
+		}
+		else
+		{
+			return parseInt(b.Sold_Count) - parseInt(a.Sold_Count)
+		}
+	}
+	else if(criteria == 'LHP')
+	{
+		var aVal = parseInt(a.Price.replace("$", ""));
+		var bVal = parseInt(b.Price.replace("$", ""));
+		
+		if(order == 'asc')
+		{
+			return aVal - bVal	
+		}
+		else
+		{
+			return bVal - aVal
+		}
+	}
+	else if(criteria == 'HLP')
+	{
+		var aVal = parseInt(a.Price.replace("$", ""));
+		var bVal = parseInt(b.Price.replace("$", ""));
+		
+		if(order == 'asc')
+		{
+			return bVal - aVal
+		}
+		else
+		{
+			return aVal - bVal	
+		}
+	}
+	else if(criteria == 'RR')
+	{
+		if(order == 'asc')
+		{
+			return parseInt(a.Review_Rating) - parseInt(b.Review_Rating)		
+		}
+		else
+		{
+			return parseInt(b.Review_Rating) - parseInt(a.Review_Rating)
+		}
+	}
 }
 
 function GetURLParameter(sParam) {
