@@ -26,7 +26,7 @@
 		},
 		{
 			Product_ID: 	'NPW1002',
-			Name: 			'NPW1002: RED BLISS',
+			Name: 			'NPW1002: Brown Blush',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',

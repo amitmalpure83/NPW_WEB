@@ -6,3 +6,9 @@ issues:
 DNP:Door Nameplates
 WNP:Wooden Nameplates
 CG:Corporate Gifts
+INP
+MNP
+CK
+DENP:Desk Nameplates
+TP
+WC
