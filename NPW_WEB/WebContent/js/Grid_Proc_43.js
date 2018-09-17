@@ -6,8 +6,10 @@ var maxpageNo = '1';
 
 $( document ).ready(function() {
 	
+	//Sample URL
 	//http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=asc&Cri=HLP&Cat=DNP
 	
+	//Read URL Parameters
 	var criteriaParam = 'Cri';
 	var orderParam = 'Ord';
 	var orderCategoryParam = 'Cat';
@@ -41,22 +43,46 @@ $( document ).ready(function() {
         }
     }
     
-    products5 = products5.sort(compareFun);
-	
-    var productStr = "<div class=\"gutter-sizer\"></div><div class=\"grid-sizer\"></div>";
+    //Copy only selected category products to a temp array
+    var products5Temp = new Array(products5.length);
+    var j = 0;
     
-	for(var i = ((pageNo -1) * 12); i < products5.length && i < (pageNo * 12); i++) 
+    for(var i = 0; i < products5.length; i++) 
 	{
-		var Product_ID 			= products5[i].Product_ID;
-		var Product_Name 		= products5[i].Name;
-		var Product_Price 		= products5[i].Price;
-		var Offer				= products5[i].Offer;
-		var Product_Disc 		= products5[i].Disc;
 		var Product_Type 		= products5[i].Type;
 		var Product_Sub_Type 	= products5[i].Sub_Type;
-		var ratingNum = parseFloat(products5[i].Review_Rating);
 
-		if(orderCategory == null || orderCategory == Product_Type || orderCategory == Product_Sub_Type)
+		if(orderCategory == null || orderCategory == '' || orderCategory == Product_Type || orderCategory == Product_Sub_Type)
+		{
+			products5Temp[j] = products5[i];
+			j++;
+		}
+	}
+    
+    //Sort
+    products5Temp = products5Temp.sort(compareFun);
+	
+    //Populate products
+    var productStr = "<div class=\"gutter-sizer\"></div><div class=\"grid-sizer\"></div>";
+    var noOfProductOnPage = 0;
+    
+	for(var i = ((pageNo -1) * 12); i < products5Temp.length && i < (pageNo * 12); i++) 
+	{
+		if(products5Temp[i] == null)
+		{
+			continue;
+		}
+		
+		var Product_ID 			= products5Temp[i].Product_ID;
+		var Product_Name 		= products5Temp[i].Name;
+		var Product_Price 		= products5Temp[i].Price;
+		var Offer				= products5Temp[i].Offer;
+		var Product_Disc 		= products5Temp[i].Disc;
+		var Product_Type 		= products5Temp[i].Type;
+		var Product_Sub_Type 	= products5Temp[i].Sub_Type;
+		var ratingNum = parseFloat(products5Temp[i].Review_Rating);
+
+		if(Product_ID != null && Product_ID != '')
 		{
 			//Product
 			productStr += "<div class=\"grid-item\">" + "  <div class=\"product-card\">";
@@ -95,17 +121,25 @@ $( document ).ready(function() {
               "    </div>" +
               "  </div>" +
               "</div>";
+			
+			noOfProductOnPage++;
 		}
 	}
 	
 	document.getElementById("products-grid").innerHTML 		= productStr;
-	document.getElementById("page_numbers").innerHTML 	= ((pageNo -1) * 12 + 1) + " - " + (pageNo * 12) + " items";
+	document.getElementById("page_numbers").innerHTML 	= ((pageNo -1) * 12 + 1) + " - " + ((pageNo -1) * 12 + noOfProductOnPage) + " items";
 	
+	//Do pagination
 	var paginationStr = "";
 	var pageCnt = 0;
 	
-	for(var i = 1; i <= products5.length; i+= 12) 
+	for(var i = 1; i <= products5Temp.length; i+= 12) 
 	{
+		if(products5Temp[i] == null)
+		{
+			continue;
+		}
+		
 		pageCnt++;
 		
 		if (pageCnt == pageNo)
