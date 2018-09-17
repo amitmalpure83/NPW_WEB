@@ -18,6 +18,8 @@ $( document ).ready(function() {
         	break;
         }
     }
+    
+    products5 = products5.sort(compareFun);
 	
     var productStr = "<div class=\"gutter-sizer\"></div><div class=\"grid-sizer\"></div>";
     
@@ -30,7 +32,8 @@ $( document ).ready(function() {
 		var Product_Disc 		= products5[i].Disc;
 		var Product_Type 		= products5[i].Type;
 		var Product_Sub_Type 	= products5[i].Sub_Type;
-		
+		var ratingNum = parseFloat(products5[i].Review_Rating);
+
 			//Product
 			productStr += "<div class=\"grid-item\">" +
               "  <div class=\"product-card\">";
@@ -40,22 +43,23 @@ $( document ).ready(function() {
 				productStr += "    <div class=\"product-badge text-danger\"> " + Offer + "% Off</div>";
 			}
 			
-			var ratingNum = parseFloat(products5[i].Review_Rating);
-
-			var starsStr = "";
-			
-			for(var r = 0; r < ratingNum; r++) 
+			if(ratingNum > 0)
 			{
-				starsStr = starsStr + "<i class=\"icon-star filled\"></i>";
+				var starsStr = "";
+			
+				for(var r = 0; r < ratingNum; r++) 
+				{
+					starsStr = starsStr + "<i class=\"icon-star filled\"></i>";
+				}	
+			
+				for(; r < 5; r++) 
+				{
+					starsStr = starsStr + "<i class=\"icon-star\"></i>";
+				}
+			
+				productStr += "<div class=\"rating-stars\">" + starsStr + "</div>";
 			}
 			
-			for(; r < 5; r++) 
-			{
-				starsStr = starsStr + "<i class=\"icon-star\"></i>";
-			}
-			
-			productStr += "<div class=\"rating-stars\">" + starsStr + "</div>";
-
 			productStr +=
               "		<a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + Product_ID + "\"><img src=\"img/shop/products/nameplates/" + Product_ID + "_th01.jpg\" alt=\"Product\"></a>" +
               "    <h3 class=\"product-title\"><a href=\"shop-single.html\">" + Product_Name + "</a></h3>" +
@@ -74,6 +78,10 @@ $( document ).ready(function() {
 	
 	});
 
+function compareFun(a, b){
+	
+	return parseInt(b.Sold_Count) - parseInt(a.Sold_Count)
+}
 
 function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
