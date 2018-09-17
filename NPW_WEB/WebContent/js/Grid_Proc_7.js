@@ -19,15 +19,48 @@ $( document ).ready(function() {
         }
     }
 	
+    var productStr = "<div class=\"gutter-sizer\"></div><div class=\"grid-sizer\"></div>";
+    
 	for(var i = 0; i < products5.length; i++) 
 	{
+		var Product_ID 			= products5[i].Product_ID;
+		var Product_Name 		= products5[i].Name;
+		var Product_Price 		= products5[i].Price;
+		var Offer				= products5[i].Offer;
+		var Product_Disc 		= products5[i].Disc;
+		var Product_Type 		= products5[i].Type;
+		var Product_Sub_Type 	= products5[i].Sub_Type;
+		
 			//Product
-			var productStr = "<div class=\"grid-item\">" +
-              "  <div class=\"product-card\">" +
-              "    <div class=\"product-badge text-danger\">50% Off</div><a class=\"product-thumb\" href=\"shop-single.html\"><img src=\"img/shop/products/01.jpg\" alt=\"Product\"></a>" +
-              "    <h3 class=\"product-title\"><a href=\"shop-single.html\">Unionbay Park</a></h3>" +
+			productStr += "<div class=\"grid-item\">" +
+              "  <div class=\"product-card\">";
+			
+			if(Offer != "")
+			{
+				productStr += "    <div class=\"product-badge text-danger\"> " + Offer + "% Off</div>";
+			}
+			
+			var ratingNum = parseFloat(products5[i].Review_Rating);
+
+			var starsStr = "";
+			
+			for(var r = 0; r < ratingNum; r++) 
+			{
+				starsStr = starsStr + "<i class=\"icon-star filled\"></i>";
+			}
+			
+			for(; r < 5; r++) 
+			{
+				starsStr = starsStr + "<i class=\"icon-star\"></i>";
+			}
+			
+			productStr += "<div class=\"rating-stars\">" + starsStr + "</div>";
+
+			productStr +=
+              "		<a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + Product_ID + "\"><img src=\"img/shop/products/nameplates/" + Product_ID + "_th01.jpg\" alt=\"Product\"></a>" +
+              "    <h3 class=\"product-title\"><a href=\"shop-single.html\">" + Product_Name + "</a></h3>" +
               "    <h4 class=\"product-price\">" +
-              "      <del>$99.99</del>$49.99" +
+              "      <del>$ " + Product_Disc + "</del>" + Product_Price +
               "    </h4>" +
               "    <div class=\"product-buttons\">" +
               "      <button class=\"btn btn-outline-secondary btn-sm btn-wishlist\" data-toggle=\"tooltip\" title=\"Whishlist\"><i class=\"icon-heart\"></i></button>" +
@@ -36,6 +69,8 @@ $( document ).ready(function() {
               "  </div>" +
               "</div>";
 	}
+	
+	document.getElementById("products-grid").innerHTML 		= productStr;
 	
 	});
 
