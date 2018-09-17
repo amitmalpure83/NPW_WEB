@@ -56,9 +56,10 @@ $( document ).ready(function() {
 		var Product_Sub_Type 	= products5[i].Sub_Type;
 		var ratingNum = parseFloat(products5[i].Review_Rating);
 
+		if(orderCategory == null || orderCategory == Product_Type || orderCategory == Product_Sub_Type)
+		{
 			//Product
-			productStr += "<div class=\"grid-item\">" +
-              "  <div class=\"product-card\">";
+			productStr += "<div class=\"grid-item\">" + "  <div class=\"product-card\">";
 			
 			if(Offer != "")
 			{
@@ -84,7 +85,7 @@ $( document ).ready(function() {
 			
 			productStr +=
               "		<a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + Product_ID + "\"><img src=\"img/shop/products/nameplates/" + Product_ID + "_th01.jpg\" alt=\"Product\"></a>" +
-              "    <h3 class=\"product-title\"><a href=\"shop-single.html\">" + Product_Name + "</a></h3>" +
+              "    <h3 class=\"product-title\"><a href=\"shop-single.html?Product_ID=" + Product_ID + "\">" + Product_Name + "</a></h3>" +
               "    <h4 class=\"product-price\">" +
               "      <del>$ " + Product_Disc + "</del>" + Product_Price +
               "    </h4>" +
@@ -94,6 +95,7 @@ $( document ).ready(function() {
               "    </div>" +
               "  </div>" +
               "</div>";
+		}
 	}
 	
 	document.getElementById("products-grid").innerHTML 		= productStr;
@@ -144,7 +146,7 @@ function redirecthref(Ord, Cri, Cat, PN)
 		PN = maxpageNo;
 	}
 	
-	window.location.href = "http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=desc&Cri=RR&Cat=DNP&PN=" + PN;
+	window.location.href = "http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=" + Ord + "&Cri=" + Cri + "&Cat=" + Cat + "&PN=" + PN;
 }
 
 function compareFun(a, b){
