@@ -2,6 +2,7 @@ var order = 'desc';
 var orderCategory = 'Door%20Nameplates';
 var criteria = 'Pop';
 var pageNo = '1';
+var maxpageNo = '1';
 
 $( document ).ready(function() {
 	
@@ -105,19 +106,46 @@ $( document ).ready(function() {
 	{
 		pageCnt++;
 		
-		if (i == 1)
+		if (pageCnt == pageNo)
 		{
-			paginationStr = "<li class=\"active\" ><a href=\"#\">1</a></li>";
+			paginationStr += "<li class=\"active\" ><a href=\"javascript:redirecthref(null ,null, null, " + pageCnt + ");\">" + pageCnt + "</a></li>";
 		}
 		else
 		{
-			paginationStr += "<li ><a href=\"#\">" + pageCnt + "</a></li>";
+			paginationStr += "<li ><a href=\"javascript:redirecthref(null ,null, null, " + pageCnt + ");\">" + pageCnt + "</a></li>";
+			maxpageNo = pageCnt;
 		}
 	}
 	
 	document.getElementById("pagination").innerHTML 		= paginationStr;
 
 	});
+
+function redirecthref(Ord, Cri, Cat, PN)
+{
+	if(Ord == null)
+	{
+		Ord = order;
+	}
+	if(Cri == null)
+	{
+		Cri = criteria;
+	}
+	if(Cat == null)
+	{
+		Cat = orderCategory;
+	}
+	if(PN == null)
+	{
+		PN = pageNo;
+	}
+	if(PN > maxpageNo)
+	{
+		PN = maxpageNo;
+	}
+	
+	window.location.href = "http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=desc&Cri=RR&Cat=DNP&PN=" + PN;
+}
 
 function compareFun(a, b){
 	
