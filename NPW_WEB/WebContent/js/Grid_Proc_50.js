@@ -7,7 +7,7 @@ var maxpageNo = '1';
 $( document ).ready(function() {
 	
 	//Sample URL
-	//http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=asc&Cri=HLP&Cat=DNP
+	//http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=asc&Cri=HLP&Cat=DNP?PN=1
 	
 	//Read URL Parameters
 	var criteriaParam = 'Cri';
@@ -28,6 +28,7 @@ $( document ).ready(function() {
         if (sParameterName[0] == criteriaParam) 
         {
         	criteria = sParameterName[1];
+        	document.getElementById("sorting").value = criteria;
         }
         else if (sParameterName[0] == orderParam) 
         {
@@ -35,7 +36,14 @@ $( document ).ready(function() {
         }
         else if (sParameterName[0] == orderCategoryParam) 
         {
+        	//document.getElementById(orderCategory).classList.remove('active');
+
         	orderCategory = sParameterName[1];
+        	
+        	if(orderCategory != null)
+        	{
+            	document.getElementById(orderCategory).classList.add('active');
+        	}
         }
         else if (sParameterName[0] == pageNoParam) 
         {
@@ -165,7 +173,10 @@ function redirecthref(Ord, Cri, Cat, PN)
 	}
 	if(Cri == null)
 	{
-		Cri = criteria;
+		var select = document.getElementById("sorting");
+		var criteriaVal = select.options[select.selectedIndex].value;
+
+		Cri = criteriaVal;
 	}
 	if(Cat == null)
 	{
@@ -180,7 +191,7 @@ function redirecthref(Ord, Cri, Cat, PN)
 		PN = maxpageNo;
 	}
 	
-	window.location.href = "http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=" + Ord + "&Cri=" + Cri + "&Cat=" + Cat + "&PN=" + PN;
+	window.location.href = "shop-grid-ls.html?Ord=" + Ord + "&Cri=" + Cri + "&Cat=" + Cat + "&PN=" + PN;
 }
 
 function compareFun(a, b){
@@ -201,7 +212,7 @@ function compareFun(a, b){
 		var aVal = parseInt(a.Price.replace("$", ""));
 		var bVal = parseInt(b.Price.replace("$", ""));
 		
-		if(order == 'asc')
+		if(order == 'desc')
 		{
 			return aVal - bVal	
 		}
@@ -215,7 +226,7 @@ function compareFun(a, b){
 		var aVal = parseInt(a.Price.replace("$", ""));
 		var bVal = parseInt(b.Price.replace("$", ""));
 		
-		if(order == 'asc')
+		if(order == 'desc')
 		{
 			return bVal - aVal
 		}

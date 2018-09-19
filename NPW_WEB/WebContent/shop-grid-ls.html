@@ -28,11 +28,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
     <script src="js/Products_36.js"></script>
-  	<script src="js/Grid_Proc_43.js"></script>
+  	<script src="js/Grid_Proc_50.js"></script>
   
    	<script>
             $(function(){
-                $("#includedContent-header").load("header3.html");
+                $("#includedContent-header").load("header4.html");
             });
 
             $(function(){
@@ -81,17 +81,17 @@
               <div class="column">
                 <div class="shop-sorting">
                   <label for="sorting">Sort by:</label>
-                  <select class="form-control" id="sorting">
-                    <option>Popularity</option>
-                    <option>Low - High Price</option>
-                    <option>High - Low Price</option>
-                    <option>Average Rating</option>
+                  <select class="form-control" id="sorting" name="sorting" onchange="javascript:redirecthref(null ,null, null, null);">
+                    <option value="Pop">Popularity</option>
+                    <option value="LHP">Low - High Price</option>
+                    <option value="HLP">High - Low Price</option>
+                    <option value="RR">Average Rating</option>
                     
                   </select><span class="text-muted">Showing:&nbsp;</span><span id = "page_numbers">1 - 12 items</span>
                 </div>
               </div>
               <div class="column">
-                <div class="shop-view"><a class="grid-view active" href="shop-grid-ls.html?Ord=desc&Cri=Pop&Cat=&PN=1"><span></span><span></span><span></span></a><a class="list-view" href="#"><span></span><span></span><span></span></a></div>
+                <div class="shop-view"><a class="grid-view active" href="javascript:redirecthref(null ,null, null, null);"><span></span><span></span><span></span></a><a class="list-view" href="#"><span></span><span></span><span></span></a></div>
               </div>
             </div>
             <!-- Products Grid-->
@@ -118,30 +118,30 @@
               <section class="widget widget-categories">
                 <h3 class="widget-title">Shop Categories</h3>
                 <ul>
-                  <li class="has-children expanded"><a href="javascript:redirecthref(null ,null, 'DNP', null);">Door Nameplates</a><span></span>
+                  <li class="has-children expanded" id="DNP"><a href="javascript:redirecthref(null ,null, 'DNP', null);">Door Nameplates</a><span></span>
                     <ul>
-                      <li><a href="javascript:redirecthref(null ,null, 'WNP', null);">Wooden Nameplates</a><span></span></li>
-                      <li><a href="javascript:redirecthref(null ,null, 'ANP', null);">Acrylic Nameplates</a><span></span></li>
+                      <li id="WNP"><a href="javascript:redirecthref(null ,null, 'WNP', null);">Wooden Nameplates</a><span></span></li>
+                      <li id="ANP"><a href="javascript:redirecthref(null ,null, 'ANP', null);">Acrylic Nameplates</a><span></span></li>
                     </ul>
                   </li>
-                  <li class="has-children expanded"><a href="javascript:redirecthref(null ,null, 'INP', null);">Industrial Nameplates</a><span></span>
+                  <li class="has-children expanded" id="INP"><a href="javascript:redirecthref(null ,null, 'INP', null);">Industrial Nameplates</a><span></span>
                     <ul>
-                      <li><a href="javascript:redirecthref(null ,null, 'CS', null);">Corporate Signage</a><span></span></li>
-                      <li><a href="javascript:redirecthref(null ,null, 'LB', null);">LED Boards</a><span></span></li>
+                      <li id="CS"><a href="javascript:redirecthref(null ,null, 'CS', null);">Corporate Signage</a><span></span></li>
+                      <li id="LB"><a href="javascript:redirecthref(null ,null, 'LB', null);">LED Boards</a><span></span></li>
                     </ul>
                   </li>
-                  <li class="has-children expanded"><a href="javascript:redirecthref(null ,null, 'CG', null);">Corporate Gifts</a><span></span>
+                  <li class="has-children expanded" id="CG"><a href="javascript:redirecthref(null ,null, 'CG', null);">Corporate Gifts</a><span></span>
                     <ul>
-                      <li><a href="javascript:redirecthref(null ,null, 'TP', null);">Trophies</a><span></span></li>
-                      <li><a href="javascript:redirecthref(null ,null, 'DENP', null);">Desk Nameplates</a><span></span></li>
-                      <li><a href="javascript:redirecthref(null ,null, 'WC', null);">Wooden Certificates</a><span></span></li>
-                      <li><a href="javascript:redirecthref(null ,null, 'AC', null);">Acrylic Certificates</a><span></span></li>
-                      <li><a href="javascript:redirecthref(null ,null, 'CK', null);">Customized Keychains</a><span></span></li>
+                      <li id="TP"><a href="javascript:redirecthref(null ,null, 'TP', null);">Trophies</a><span></span></li>
+                      <li id="DENP"><a href="javascript:redirecthref(null ,null, 'DENP', null);">Desk Nameplates</a><span></span></li>
+                      <li id="WC"><a href="javascript:redirecthref(null ,null, 'WC', null);">Wooden Certificates</a><span></span></li>
+                      <li id="AC"><a href="javascript:redirecthref(null ,null, 'AC', null);">Acrylic Certificates</a><span></span></li>
+                      <li id="CK"><a href="javascript:redirecthref(null ,null, 'CK', null);">Customized Keychains</a><span></span></li>
                     </ul>
                   </li>
-                  <li ><a href="javascript:redirecthref(null ,null, 'GV', null);">Gift Vouchers</a><span>(874)</span></li>
-                  <li ><a href="javascript:redirecthref(null ,null, 'WA', null);">Wall Art</a><span>(874)</span></li>
-                  <li ><a href="javascript:redirecthref(null ,null, 'MNP', null);">Marble Nameplates</a><span>(874)</span></li>
+                  <li id="GV"><a href="javascript:redirecthref(null ,null, 'GV', null);">Gift Vouchers</a><span>(874)</span></li>
+                  <li id="WA"><a href="javascript:redirecthref(null ,null, 'WA', null);">Wall Art</a><span>(874)</span></li>
+                  <li id="MNP"><a href="javascript:redirecthref(null ,null, 'MNP', null);">Marble Nameplates</a><span>(874)</span></li>
                 </ul>
               </section>
               <!-- Widget Price Range-->
