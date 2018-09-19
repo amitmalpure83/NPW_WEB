@@ -475,8 +475,8 @@
 			Review_Rating:	'3.5'
 		},
 		{
-			Product_ID: 	'NPW1001',
-			Name: 			'NPW1001: RED BLISS',
+			Product_ID: 	'NPW1030',
+			Name: 			'NPW1030: RED BLISS',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',
