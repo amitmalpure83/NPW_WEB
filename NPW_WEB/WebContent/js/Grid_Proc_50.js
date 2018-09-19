@@ -1,5 +1,5 @@
 var order = 'desc';
-var orderCategory = 'Door%20Nameplates';
+var orderCategory = 'DNP';
 var criteria = 'Pop';
 var pageNo = '1';
 var maxpageNo = '1';
@@ -8,6 +8,7 @@ $( document ).ready(function() {
 	
 	//Sample URL
 	//http://localhost:8080/NPW_WEB/shop-grid-ls.html?Ord=asc&Cri=HLP&Cat=DNP?PN=1
+	
 	
 	//Read URL Parameters
 	var criteriaParam = 'Cri';
@@ -36,8 +37,6 @@ $( document ).ready(function() {
         }
         else if (sParameterName[0] == orderCategoryParam) 
         {
-        	//document.getElementById(orderCategory).classList.remove('active');
-
         	orderCategory = sParameterName[1];
         	
         	if(orderCategory != null)
