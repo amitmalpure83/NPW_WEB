@@ -18,6 +18,11 @@ $( document ).ready(function() {
 	
 	var sPageURL = window.location.search.substring(1);
 
+	if(sPageURL == '' || sPageURL.includes('index'))
+	{
+		return;
+	}
+	
     var url = window.location.href;
 
     var sURLVariables = sPageURL.split('&');
