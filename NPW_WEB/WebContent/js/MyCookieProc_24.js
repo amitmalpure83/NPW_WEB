@@ -70,7 +70,9 @@ function removeFromCartInCart(CartItemId, productId, productPrice)
 	carItem.parentNode.removeChild(carItem);
 	
 	//update subtotal
-	var totalCartAmout = parseInt(document.getElementById("Cart_SubTotal").innerHTML);
+	var totalCartAmoutStr = document.getElementById("Cart_SubTotal").innerHTML;
+	totalCartAmoutStr = totalCartAmoutStr.replace("$", "");
+	var totalCartAmout = parseInt(totalCartAmoutStr);
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + (totalCartAmout - productPrice);
 
 	//delete from cookie
@@ -194,7 +196,7 @@ function populateCartInCart()
                     "</td>"+
                     "<td class=\"text-center text-lg text-medium\">$" + productPrice + "</td>"+
                     "<td class=\"text-center text-lg text-medium\">$18.00</td>"+
-                	"<td class=\"text-center\"><a class=\"remove-from-cart\" href=\"javascript:removeFromCartInCart(\"Cart_Item_" + i + "\",\"" + productId + "\",\"" + productPrice + "\");\" data-toggle=\"tooltip\" title=\"Remove item\"><i class=\"icon-cross\"></i></a></td>"+
+                	"<td class=\"text-center\"><a class=\"remove-from-cart\" href=\"javascript:removeFromCartInCart('Cart_Item_" + i + "','" + productId + "','" + productPrice + "');\" data-toggle=\"tooltip\" title=\"Remove item\"><i class=\"icon-cross\"></i></a></td>"+
                 	"</tr>";
 		}
 
