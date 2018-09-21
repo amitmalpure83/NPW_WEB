@@ -56,6 +56,8 @@ function getCookie(name)
 
 function clearCart()
 {
+	setCookie(cookieName, '', 'Y');
+
 	eraseCookie();
 	
 	populateCartInCart();
@@ -115,12 +117,16 @@ $( document ).ready(function()
 
 	if(url == '' || url.includes('index'))
 	{
-		populateCartInHome();
-		continue;
+		return;
 	}
 	
 	populateCartInCart();
 });
+
+window.onload = function () 
+{
+	setTimeout(populateCartInHome,5000);
+};
 
 function populateCartInHome()
 {
@@ -179,45 +185,48 @@ function populateCartInHome()
 function populateCartInCart()
 {
 	var Product1CK = getCookie(cookieName);
-	
-	if (Product1CK) 
+
+	var Product1CKArr = Product1CK.split(',');
+
+	var cartItemStr = "";
+
+	var totalCartAmout = 0;
+
+	for(i = 0; i < Product1CKArr.length; i++)
 	{
-		var Product1CKArr = Product1CK.split(',');
-			
-		var cartItemStr = "";
-		
-		var totalCartAmout = 0;
-		
-		for(i = 0; i < Product1CKArr.length; i++)
+		var productDetails = Product1CKArr[i];
+
+		if(productDetails == null || productDetails == '')
 		{
-			var productDetails = Product1CKArr[i];
-			var productDetailsArr = productDetails.split('#');
-			var productId = productDetailsArr[0];
-			var productName = productDetailsArr[1];
-			var productPrice = productDetailsArr[2];
-	
-			totalCartAmout = totalCartAmout + parseInt(productPrice);
-			
-			cartItemStr +="<tr id = \"Cart_Item_" + i + "\"><td>" +
-					"<div class=\"product-item\"><a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + productId + "\"><img src=\"img/shop/products/nameplates/" + productId + "_th01.jpg\" alt=\"Product\"></a>"+
-                    "<div class=\"product-info\">"+
-                    "  <h4 class=\"product-title\"><a href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a></h4><span><em>Size:</em> 10.5</span><span><em>Color:</em> Dark Blue</span>"+
-                    "</div></div>"+
-                    "</td>"+
-                    "<td class=\"text-center\">"+
-                    "<div class=\"count-input\">"+
-                    "<select class=\"form-control\"><option>1</option></select>"+
-                    "</div>"+
-                    "</td>"+
-                    "<td class=\"text-center text-lg text-medium\">$" + productPrice + "</td>"+
-                    "<td class=\"text-center text-lg text-medium\">$18.00</td>"+
-                	"<td class=\"text-center\"><a class=\"remove-from-cart\" href=\"javascript:removeFromCartInCart('Cart_Item_" + i + "','" + productId + "','" + productPrice + "');\" data-toggle=\"tooltip\" title=\"Remove item\"><i class=\"icon-cross\"></i></a></td>"+
-                	"</tr>";
+			continue;
 		}
 
-		console.log(cartItemStr);
+		var productDetailsArr = productDetails.split('#');
+		var productId = productDetailsArr[0];
+		var productName = productDetailsArr[1];
+		var productPrice = productDetailsArr[2];
 
-		document.getElementById("Cart_1").innerHTML = cartItemStr;
-		document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
+		totalCartAmout = totalCartAmout + parseInt(productPrice);
+
+		cartItemStr +="<tr id = \"Cart_Item_" + i + "\"><td>" +
+		"<div class=\"product-item\"><a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + productId + "\"><img src=\"img/shop/products/nameplates/" + productId + "_th01.jpg\" alt=\"Product\"></a>"+
+		"<div class=\"product-info\">"+
+		"  <h4 class=\"product-title\"><a href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a></h4><span><em>Size:</em> 10.5</span><span><em>Color:</em> Dark Blue</span>"+
+		"</div></div>"+
+		"</td>"+
+		"<td class=\"text-center\">"+
+		"<div class=\"count-input\">"+
+		"<select class=\"form-control\"><option>1</option></select>"+
+		"</div>"+
+		"</td>"+
+		"<td class=\"text-center text-lg text-medium\">$" + productPrice + "</td>"+
+		"<td class=\"text-center text-lg text-medium\">$18.00</td>"+
+		"<td class=\"text-center\"><a class=\"remove-from-cart\" href=\"javascript:removeFromCartInCart('Cart_Item_" + i + "','" + productId + "','" + productPrice + "');\" data-toggle=\"tooltip\" title=\"Remove item\"><i class=\"icon-cross\"></i></a></td>"+
+		"</tr>";
 	}
+
+	console.log(cartItemStr);
+
+	document.getElementById("Cart_1").innerHTML = cartItemStr;
+	document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
 }
