@@ -1,9 +1,10 @@
 var today = new Date();
 var expiry = new Date(today.getTime() + 30*24*3600*1000);
+var cookieName = "npwcart";
 
 function storeValues(productId)
 {
-	setCookie("npwcart", productId, 'N');
+	setCookie(cookieName, productId, 'N');
 		
 	populateCartInHome();
 	
@@ -14,7 +15,7 @@ function setCookie(name,value,isOverwrite)
 {
 	if(isOverwrite == 'N')
 	{
-		var Product1CK = getCookie('npwcart');
+		var Product1CK = getCookie(cookieName);
 	
 		if(Product1CK == null)
 		{
@@ -53,9 +54,16 @@ function getCookie(name)
     return null;
 }
 
-function eraseCookie(name) 
+function clearCart()
+{
+	eraseCookie();
+	
+	populateCartInCart();
+}
+
+function eraseCookie() 
 {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
+    document.cookie = cookieName + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 function removeFromCartInHome(productId)
@@ -81,7 +89,7 @@ function removeFromCartInCart(CartItemId, productId, productPrice)
 
 function removeProductFromCookie(name, productId) 
 {   
-	var Product1CK = getCookie('npwcart');
+	var Product1CK = getCookie(cookieName);
 	var Product1CKNew = "";
 	
 	if (Product1CK) 
@@ -97,7 +105,7 @@ function removeProductFromCookie(name, productId)
 		}
 	}
 	
-	setCookie("npwcart", productId, 'Y');
+	setCookie(cookieName, productId, 'Y');
 }
 
 $( document ).ready(function() 
@@ -107,7 +115,8 @@ $( document ).ready(function()
 
 	if(url == '' || url.includes('index'))
 	{
-		return;
+		populateCartInHome();
+		continue;
 	}
 	
 	populateCartInCart();
@@ -115,7 +124,7 @@ $( document ).ready(function()
 
 function populateCartInHome()
 {
-	var Product1CK = getCookie('npwcart');
+	var Product1CK = getCookie(cookieName);
 	
 	if (Product1CK) 
 	{
@@ -134,6 +143,12 @@ function populateCartInHome()
 		for(i = 0; i < Product1CKArr.length; i++)
 		{
 			var productDetails = Product1CKArr[i];
+			
+			if(productDetails == null || productDetails == '')
+			{
+				continue;
+			}
+			
 			var productDetailsArr = productDetails.split('#');
 			var productId = productDetailsArr[0];
 			var productName = productDetailsArr[1];
@@ -163,7 +178,7 @@ function populateCartInHome()
 
 function populateCartInCart()
 {
-	var Product1CK = getCookie('npwcart');
+	var Product1CK = getCookie(cookieName);
 	
 	if (Product1CK) 
 	{
