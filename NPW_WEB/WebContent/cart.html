@@ -27,7 +27,7 @@
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
     <script src="js/Products_36.js"></script>
   	<script src="js/Grid_Proc_53.js"></script>
-  	<script src="js/mycookie12.js"></script>
+  	<script src="js/MyCookieProc_23.js"></script>
   	
   	<script>
             $(function(){
@@ -91,7 +91,7 @@
                 <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id = "Cart_1">
               <tr>
                 <td>
                   <div class="product-item"><a class="product-thumb" href="shop-single.html"><img src="img/shop/cart/01.jpg" alt="Product"></a>
@@ -171,7 +171,7 @@
               <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
             </form>
           </div>
-          <div class="column text-lg">Subtotal: <span class="text-medium">$289.68</span></div>
+          <div class="column text-lg">Subtotal: <span class="text-medium" id = "Cart_SubTotal">$289.68</span></div>
         </div>
         <div class="shopping-cart-footer">
           <div class="column"><a class="btn btn-outline-secondary" href="shop-grid-ls.html"><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div>
