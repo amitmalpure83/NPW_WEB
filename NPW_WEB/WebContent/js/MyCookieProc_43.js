@@ -2,6 +2,7 @@ var today = new Date();
 var expiry = new Date(today.getTime() + 30*24*3600*1000);
 var cookieName = "npwcart";
 var cookieNameAddress = "npwAddr";
+var cookieNameOther = "npwOther";
 var subtotal = 0;
 
 $( document ).ready(function() 
@@ -20,7 +21,7 @@ $( document ).ready(function()
 	}
 	else if(url.includes('address'))
 	{
-		populateAddress();
+		populateAddress(subtotal);
 	}	
 	
 });
@@ -241,12 +242,31 @@ function populateCartInCart()
 	document.getElementById("Cart_1").innerHTML = cartItemStr;
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
 	subtotal = totalCartAmout;
+	
+	setCookie(cookieNameOther, "subTotal=" + subtotal, 'Y');
 }
 
-function populateAddress()
+function populateAddress(subtotal)
 {
-	document.getElementById("Addr_SubTotal").innerHTML = "$" + subtotal;
+	var Product1CKOther = getCookie(cookieNameOther);
 
+	var Product1CKOtherArr = Product1CKOther.split(',');
+
+	if(Product1CKOtherArr && Product1CKOtherArr != null && Product1CKOtherArr.length > 0)
+	{
+		var subTotalStr = Product1CKOtherArr[0];
+		
+		if(subTotalStr.includes('subTotal'))
+		{
+			var subTotalVal = parseInt(subTotalStr.split('=')[1]);
+			
+			document.getElementById("Addr_SubTotal").innerHTML = "$" + subTotalVal;
+			document.getElementById("Addr_Tax").innerHTML = "$" + (subTotalVal*0.1);
+			document.getElementById("Addr_Total").innerHTML = "$" + (subTotalVal + subTotalVal*0.1);
+		}
+
+	}
+	
 	var Product1CK = getCookie(cookieNameAddress);
 
 	if(Product1CK)
