@@ -50,8 +50,8 @@
 			Review_Rating:	'2.2'
 		},
 		{
-			Product_ID: 	'NPW1001',
-			Name: 			'NPW1001: RED BLISS',
+			Product_ID: 	'NPW1003',
+			Name: 			'NPW1003: RED BLISS',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',
@@ -75,8 +75,8 @@
 			Review_Rating:	'0'
 		},
 		{
-			Product_ID: 	'NPW1001',
-			Name: 			'NPW1001: RED BLISS',
+			Product_ID: 	'NPW1004',
+			Name: 			'NPW1004: RED BLISS',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',
@@ -100,8 +100,8 @@
 			Review_Rating:	'3.5'
 		},
 		{
-			Product_ID: 	'NPW1001',
-			Name: 			'NPW1001: RED BLISS',
+			Product_ID: 	'NPW1005',
+			Name: 			'NPW1005: RED BLISS',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',
@@ -125,8 +125,8 @@
 			Review_Rating:	'0'
 		},
 		{
-			Product_ID: 	'NPW1001',
-			Name: 			'NPW1001: RED BLISS',
+			Product_ID: 	'NPW1006',
+			Name: 			'NPW1006: RED BLISS',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',
@@ -150,8 +150,8 @@
 			Review_Rating:	'1'
 		},
 		{
-			Product_ID: 	'NPW1002',
-			Name: 			'NPW1002: RED BLISS',
+			Product_ID: 	'NPW1007',
+			Name: 			'NPW1007: RED BLISS',
 			Desc: 			'This designer name plate, exclusively handcrafted for you, will help in creating divine impression for your home entrance.',
 			Desc2: 			'',
 			Type:			'DNP',

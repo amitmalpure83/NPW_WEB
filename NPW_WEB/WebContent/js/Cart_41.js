@@ -5,9 +5,14 @@ $( document ).ready(function() {
 	var sPageURL = window.location.search.substring(1);
 
     var url = window.location.href;
-
-    var sURLVariables = sPageURL.split('&');
     
+    if(url == '' || url.includes('cart'))
+	{
+		return;
+	}
+	
+    var sURLVariables = sPageURL.split('&');
+
     for (var i = 0; i < sURLVariables.length; i++) 
     {
         var sParameterName = sURLVariables[i].split('=');
@@ -19,27 +24,6 @@ $( document ).ready(function() {
         }
     }
     
-	/*for(var i = 0; i < products.length; i++) 
-	{
-		if(products[i].productID == Product_ID)
-		{
-			$("#productsDiv").append(
-				"<div class='flex-container'>"
-					+"<div>"+ products[i].productID +" - "+ products[i].productName +"</div>"
-					+"<div>"+ products[i].productDesc  +"</div>"
-					+"<div> Rate: "+ products[i].rate +"</div>"
-					+"<div> Quantity: <input type='text' id='"+ products[i].productID +"' name='"+ products[i].productID +"'></div>"
-				+"</div>"
-			);
-			
-			document.getElementById("Product_Name").innerHTML = products[i].productName;
-			document.getElementById("Product_Price").innerHTML = products[i].rate;
-			
-			break;
-		}
-	}*/
-		
-	
 	for(var i = 0; i < products5.length; i++) 
 	{
 		if(products5[i].Product_ID == Product_ID)
@@ -171,6 +155,16 @@ $( document ).ready(function() {
 		
 	});
 
+function getProductDetails(Product_ID)
+{
+	for(var i = 0; i < products5.length; i++) 
+	{
+		if(products5[i].Product_ID == Product_ID)
+		{
+			return products5[i];
+		}
+	}
+}
 
 function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);

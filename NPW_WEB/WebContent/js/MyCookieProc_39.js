@@ -1,7 +1,30 @@
 var today = new Date();
 var expiry = new Date(today.getTime() + 30*24*3600*1000);
 var cookieName = "npwcart";
+var cookieNameAddress = "npwAddr";
+var subtotal = 0;
 
+$( document ).ready(function() 
+{
+	var sPageURL = window.location.search.substring(1);
+    var url = window.location.href;
+
+	if(url == '' || url.includes('index'))
+	{
+		setTimeout(populateCartInHome,5000);
+		return;
+	}
+	else if(url.includes('cart'))
+	{
+		populateCartInCart();
+	}
+	else if(url.includes('address'))
+	{
+		populateAddress();
+	}	
+	
+});
+		
 function storeValues(productId)
 {
 	setCookie(cookieName, productId, 'N');
@@ -84,7 +107,8 @@ function removeFromCartInCart(CartItemId, productId, productPrice)
 	totalCartAmoutStr = totalCartAmoutStr.replace("$", "");
 	var totalCartAmout = parseInt(totalCartAmoutStr);
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + (totalCartAmout - productPrice);
-
+	subtotal = totalCartAmout - productPrice;
+	
 	//delete from cookie
 	removeProductFromCookie(name, productId);
 }
@@ -109,24 +133,6 @@ function removeProductFromCookie(name, productId)
 	
 	setCookie(cookieName, productId, 'Y');
 }
-
-$( document ).ready(function() 
-{
-	var sPageURL = window.location.search.substring(1);
-    var url = window.location.href;
-
-	if(url == '' || url.includes('index'))
-	{
-		return;
-	}
-	
-	populateCartInCart();
-});
-
-window.onload = function () 
-{
-	setTimeout(populateCartInHome,5000);
-};
 
 function populateCartInHome()
 {
@@ -163,7 +169,7 @@ function populateCartInHome()
 			totalCartCount++;
 			totalCartAmout = totalCartAmout + parseInt(productPrice);
 			
-			cartItemStr = 
+			cartItemStr += 
 				"<div class=\"dropdown-product-item\"><span class=\"dropdown-product-remove\" href=\"javascript:removeFromCartInHome(" + productId + ");\"><i class=\"icon-cross\"></i></span><a class=\"dropdown-product-thumb\" " +
 				"href=\"shop-single.html?Product_ID=" + productId + "\"><img src=\"img/shop/products/nameplates/" + productId + "_th01.jpg\" alt=\"Product\"></a>"+
 			    "<div class=\"dropdown-product-info\"><a class=\"dropdown-product-title\" href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a><span class=\"dropdown-product-details\">1 x $" + productPrice + "</span></div> </div>";	
@@ -200,18 +206,23 @@ function populateCartInCart()
 		{
 			continue;
 		}
-
+		
 		var productDetailsArr = productDetails.split('#');
 		var productId = productDetailsArr[0];
 		var productName = productDetailsArr[1];
 		var productPrice = productDetailsArr[2];
 
+		var productDetails = getProductDetails(productId);
+		var disc = productDetails.Disc;
+		var subType = productDetails.Sub_Type;
+		var cust = productDetails.Customiation_1;
+		
 		totalCartAmout = totalCartAmout + parseInt(productPrice);
 
 		cartItemStr +="<tr id = \"Cart_Item_" + i + "\"><td>" +
 		"<div class=\"product-item\"><a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + productId + "\"><img src=\"img/shop/products/nameplates/" + productId + "_th01.jpg\" alt=\"Product\"></a>"+
 		"<div class=\"product-info\">"+
-		"  <h4 class=\"product-title\"><a href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a></h4><span><em>Size:</em> 10.5</span><span><em>Color:</em> Dark Blue</span>"+
+		"  <h4 class=\"product-title\"><a href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a></h4><span><em>Type:</em> " + subType + "</span><span><em>Features:</em> " + cust + "</span>"+
 		"</div></div>"+
 		"</td>"+
 		"<td class=\"text-center\">"+
@@ -220,7 +231,7 @@ function populateCartInCart()
 		"</div>"+
 		"</td>"+
 		"<td class=\"text-center text-lg text-medium\">$" + productPrice + "</td>"+
-		"<td class=\"text-center text-lg text-medium\">$18.00</td>"+
+		"<td class=\"text-center text-lg text-medium\">$" + disc + "</td>"+
 		"<td class=\"text-center\"><a class=\"remove-from-cart\" href=\"javascript:removeFromCartInCart('Cart_Item_" + i + "','" + productId + "','" + productPrice + "');\" data-toggle=\"tooltip\" title=\"Remove item\"><i class=\"icon-cross\"></i></a></td>"+
 		"</tr>";
 	}
@@ -229,4 +240,57 @@ function populateCartInCart()
 
 	document.getElementById("Cart_1").innerHTML = cartItemStr;
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
+	subtotal = totalCartAmout;
+}
+
+function populateAddress()
+{
+	document.getElementById("Addr_SubTotal").innerHTML = "$" + subtotal;
+
+	var Product1CK = getCookie(cookieNameAddress);
+
+	if(Product1CK)
+	{
+		var Product1CKArr = Product1CK.split(',');
+
+		if(Product1CKArr && Product1CKArr != null && Product1CKArr.length > 0)
+		{
+			var fName = Product1CKArr[0];
+			var lName = Product1CKArr[1];
+			var email = Product1CKArr[2];
+			var phone = Product1CKArr[3];
+			var company = Product1CKArr[4];
+			var city = Product1CKArr[5];
+			var zip = Product1CKArr[6];
+			var addr1 = Product1CKArr[7];
+			var addr2 = Product1CKArr[8];
+	
+			document.getElementById("checkout-fn").value = fName;
+			document.getElementById("checkout-ln").value = lName;
+			document.getElementById("checkout-email").value = email;
+			document.getElementById("checkout-phone").value = phone;
+			document.getElementById("checkout-company").value = company;
+			document.getElementById("checkout-city").value = city;
+			document.getElementById("checkout-zip").value = zip;
+			document.getElementById("checkout-address1").value = addr1;
+			document.getElementById("checkout-address2").value = addr2;
+		}
+	}
+}
+
+function saveAddressCookie()
+{
+	var fName = document.getElementById("checkout-fn").value;
+	var lName = document.getElementById("checkout-ln").value;
+	var email = document.getElementById("checkout-email").value;
+	var phone = document.getElementById("checkout-phone").value;
+	var company = document.getElementById("checkout-company").value;
+	var city = document.getElementById("checkout-city").value;
+	var zip = document.getElementById("checkout-zip").value;
+	var addr1 = document.getElementById("checkout-address1").value;
+	var addr2 = document.getElementById("checkout-address2").value;
+
+	var Product1CKStr = fName + "," + lName + "," + email + "," + phone + "," + company + "," + city + "," + zip + "," + addr1 + "," + addr2; 
+
+	setCookie(cookieNameAddress, Product1CKStr, 'Y');
 }

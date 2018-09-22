@@ -27,9 +27,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
-    <script src="js/Products_36.js"></script>
-  	<script src="js/Grid_Proc_53.js"></script>
-  	<script src=js/MyCookieProc_34.js></script>
+    <script src="js/Products_37.js"></script>
+  	<script src="js/Grid_Proc_55.js"></script>
+  	<script src=js/MyCookieProc_39.js></script>
     
    	<script>
             $(function(){
@@ -102,7 +102,7 @@
                 <div class="form-group">
                   <label for="checkout-email">E-mail Address</label>
                   <input class="form-control" type="email" id="checkout-email">
-                </div>
+                </div> 
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
@@ -166,7 +166,7 @@
             </div>
             <div class="checkout-footer">
               <div class="column"><a class="btn btn-outline-secondary" href="cart.html"><i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back To Cart</span></a></div>
-              <div class="column"><a class="btn btn-primary" href="checkout-shipping.html"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
+              <div class="column"><a class="btn btn-primary" href="checkout-shipping.html" onclick="saveAddressCookie();"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
             </div>
           </div>
           <!-- Sidebar          -->
@@ -179,7 +179,7 @@
                 <table class="table">
                   <tr>
                     <td>Cart Subtotal:</td>
-                    <td class="text-medium">$289.68</td>
+                    <td class="text-medium" id = "Addr_SubTotal">$289.68</td>
                   </tr>
                   <tr>
                     <td>Shipping:</td>
