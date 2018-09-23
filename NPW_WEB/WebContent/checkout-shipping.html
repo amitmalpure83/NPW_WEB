@@ -49,7 +49,7 @@
             });
 
             $(function(){
-                $("#includedContent-sidebar").load("sidebar3.html");
+                $("#includedContent-sidebar").load("sidebar4.html");
             });
 	</script>
     
@@ -98,7 +98,7 @@
                   <tr>
                     <td class="align-middle">
                       <div class="custom-control custom-radio mb-0">
-                        <input class="custom-control-input" type="radio" id="pickup" name="shipping-method" checked>
+                        <input class="custom-control-input" type="radio" id="pickup" name="shipping-method" checked onclick="changeShippingCharge(0);">
                         <label class="custom-control-label" for="pickup"></label>
                       </div>
                     </td>
@@ -109,13 +109,13 @@
                   <tr>
                     <td class="align-middle">
                       <div class="custom-control custom-radio mb-0">
-                        <input class="custom-control-input" type="radio" id="courier" name="shipping-method" >
+                        <input class="custom-control-input" type="radio" id="courier" name="shipping-method" onclick="changeShippingCharge(11);">
                         <label class="custom-control-label" for="courier"></label>
                       </div>
                     </td>
                     <td class="align-middle"><span class="text-medium">Courier</span><br><span class="text-muted text-sm">Australia, NewZealand</span></td>
                     <td class="align-middle">2 - 4 days</td>
-                    <td class="align-middle">$11.50</td>
+                    <td class="align-middle">$11</td>
                   </tr>
                 </tbody>
               </table>

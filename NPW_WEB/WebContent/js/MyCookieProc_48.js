@@ -169,9 +169,16 @@ function populateCartInHome()
 			
 			var productDetailsArr = productDetails.split('#');
 			var productId = productDetailsArr[0];
-			var productName = productDetailsArr[1];
-			var productPrice = productDetailsArr[2];
+
+			var productName = "";
+			var productPrice = "";
 	
+			if(productDetailsArr.length > 1)
+			{
+				productName = productDetailsArr[1];
+				productPrice = productDetailsArr[2];
+			}
+			
 			totalCartCount++;
 			totalCartAmout = totalCartAmout + parseInt(productPrice);
 			
@@ -215,9 +222,16 @@ function populateCartInCart()
 		
 		var productDetailsArr = productDetails.split('#');
 		var productId = productDetailsArr[0];
-		var productName = productDetailsArr[1];
-		var productPrice = productDetailsArr[2];
+		
+		var productName = "";
+		var productPrice = "";
 
+		if(productDetailsArr.length > 1)
+		{
+			productName = productDetailsArr[1];
+			productPrice = productDetailsArr[2];
+		}
+		
 		var productDetails = getProductDetails(productId);
 		var disc = productDetails.Disc;
 		var subType = productDetails.Sub_Type;
@@ -248,7 +262,8 @@ function populateCartInCart()
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
 	subtotal = totalCartAmout;
 	
-	setCookie(cookieNameOther, "subTotal=" + subtotal, 'Y');
+	var value = "subTotal=" + subtotal + "shipping=" + 0;
+	setCookie(cookieNameOther, value, 'Y');
 }
 
 function populateSideBar()
@@ -260,16 +275,18 @@ function populateSideBar()
 	if(Product1CKOtherArr && Product1CKOtherArr != null && Product1CKOtherArr.length > 0)
 	{
 		var subTotalStr = Product1CKOtherArr[0];
+		var shippingChargeStr = Product1CKOtherArr[1];
 		
 		if(subTotalStr.includes('subTotal'))
 		{
 			var subTotalVal = parseInt(subTotalStr.split('=')[1]);
+			var shippingCharge = parseInt(shippingChargeStr.split('=')[1]);
 			
 			document.getElementById("Addr_SubTotal").innerHTML = "$" + subTotalVal;
 			document.getElementById("Addr_Tax").innerHTML = "$" + (subTotalVal*0.1);
-			document.getElementById("Addr_Total").innerHTML = "$" + (subTotalVal + subTotalVal*0.1);
+			document.getElementById("Addr_Shipping").innerHTML = "$" + shippingCharge;
+			document.getElementById("Addr_Total").innerHTML = "$" + (subTotalVal + Addr_Shipping + subTotalVal*0.1);
 		}
-
 	}
 }
 
@@ -326,4 +343,13 @@ function saveAddressCookie()
 	}
 	
 	setCookie(cookieNameAddress, Product1CKStr, 'Y');
+}
+
+function changeShippingCharge(shippingCharge)
+{
+	var value = "subTotal=" + subtotal + "shipping=" + shippingCharge;
+	
+	setCookie(cookieNameOther, value, 'Y');
+
+	populateSideBar();
 }
