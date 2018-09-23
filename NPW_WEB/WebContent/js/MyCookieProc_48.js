@@ -21,7 +21,12 @@ $( document ).ready(function()
 	}
 	else if(url.includes('address'))
 	{
-		populateAddress(subtotal);
+		populateAddress();
+	}	
+	
+	if(url.includes('address') || url.includes('shipping') || url.includes('payment') || url.includes('review'))
+	{
+		setTimeout(populateSideBar,3000);
 	}	
 	
 });
@@ -246,7 +251,7 @@ function populateCartInCart()
 	setCookie(cookieNameOther, "subTotal=" + subtotal, 'Y');
 }
 
-function populateAddress(subtotal)
+function populateSideBar()
 {
 	var Product1CKOther = getCookie(cookieNameOther);
 
@@ -266,7 +271,10 @@ function populateAddress(subtotal)
 		}
 
 	}
-	
+}
+
+function populateAddress()
+{
 	var Product1CK = getCookie(cookieNameAddress);
 
 	if(Product1CK)
@@ -312,5 +320,10 @@ function saveAddressCookie()
 
 	var Product1CKStr = fName + "," + lName + "," + email + "," + phone + "," + company + "," + city + "," + zip + "," + addr1 + "," + addr2; 
 
+	if(!Product1CKStr.startsWith(",,,"))
+	{
+		setCookie(cookieNameAddress, Product1CKStr, 'Y');	
+	}
+	
 	setCookie(cookieNameAddress, Product1CKStr, 'Y');
 }
