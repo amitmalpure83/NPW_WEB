@@ -10,7 +10,7 @@ $( document ).ready(function()
 	var sPageURL = window.location.search.substring(1);
     var url = window.location.href;
 
-	if(url == '' || url.includes('index') || url.includes('cart')  || url.includes('address') || url.includes('shipping') || url.includes('payment') || url.includes('review'))
+	if(url == '' || url.includes('index') || url.includes('cart')  || url.includes('address') || url.includes('shipping') || url.includes('payment') || url.includes('review') || url.includes('shop-grid-ls'))
 	{
 		setTimeout(populateCartInHome,3000);
 	}
@@ -27,6 +27,11 @@ $( document ).ready(function()
 	else if(url.includes('address'))
 	{
 		populateAddress();
+	}	
+	else if(url.includes('review'))
+	{
+		populateAddressInReview();
+		populateCartInReview();
 	}	
 	
 	if(url.includes('address') || url.includes('shipping') || url.includes('payment') || url.includes('review'))
@@ -206,6 +211,61 @@ function populateCartInHome()
 	}
 }
 
+function populateCartInReview()
+{
+	var Product1CK = getCookie(cookieName);
+
+	var Product1CKArr = Product1CK.split(',');
+
+	var cartItemStr = "";
+
+	var totalCartAmout = 0;
+
+	for(i = 0; i < Product1CKArr.length; i++)
+	{
+		var productDetails = Product1CKArr[i];
+
+		if(productDetails == null || productDetails == '')
+		{
+			continue;
+		}
+		
+		var productDetailsArr = productDetails.split('#');
+		var productId = productDetailsArr[0];
+		
+		var productName = "";
+		var productPrice = "";
+
+		if(productDetailsArr.length > 1)
+		{
+			productName = productDetailsArr[1];
+			productPrice = productDetailsArr[2];
+		}
+		
+		var productDetails = getProductDetails(productId);
+		var disc = productDetails.Disc;
+		var subType = productDetails.Sub_Type;
+		var cust = productDetails.Customiation_1;
+		
+		totalCartAmout = totalCartAmout + parseInt(productPrice);
+
+		cartItemStr +="<tr id = \"Review_Cart_Item_" + i + "\"><td>" +
+		"<div class=\"product-item\"><a class=\"product-thumb\" href=\"shop-single.html?Product_ID=" + productId + "\"><img src=\"img/shop/products/nameplates/" + productId + "_th01.jpg\" alt=\"Product\"></a>"+
+		"<div class=\"product-info\">"+
+		"  <h4 class=\"product-title\"><a href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a></h4><span><em>Type:</em> " + subType + "</span><span><em>Features:</em> " + cust + "</span>"+
+		"</div></div>"+
+		"</td>"+
+		"<td class=\"text-center text-lg text-medium\">$" + productPrice + "</td>"+
+		"<td class=\"text-center\"><a class=\"btn btn-outline-primary btn-sm\" href=\"cart.html\">Edit</a>" +
+		"</td>"+
+		"</tr>";
+	}
+
+	document.getElementById("Review_Cart_1").innerHTML = cartItemStr;
+	document.getElementById("Review_Cart_SubTotal").innerHTML = "$" + totalCartAmout;
+	subtotal = totalCartAmout;
+}
+
 function populateCartInCart()
 {
 	var Product1CK = getCookie(cookieName);
@@ -261,8 +321,6 @@ function populateCartInCart()
 		"</tr>";
 	}
 
-	console.log(cartItemStr);
-
 	document.getElementById("Cart_1").innerHTML = cartItemStr;
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
 	subtotal = totalCartAmout;
@@ -292,6 +350,28 @@ function populateSideBar()
 			document.getElementById("Addr_Tax").innerHTML = "$" + (subTotalVal*0.1);
 			document.getElementById("Addr_Shipping").innerHTML = "$" + shippingCharge;
 			document.getElementById("Addr_Total").innerHTML = "$" + (subTotalVal + shippingCharge + subTotalVal*0.1);
+		}
+	}
+}
+
+function populateAddressInReview()
+{
+	var Product1CK = getCookie(cookieNameAddress);
+
+	if(Product1CK)
+	{
+		var Product1CKArr = Product1CK.split(',');
+
+		if(Product1CKArr && Product1CKArr != null && Product1CKArr.length > 0)
+		{
+			var name = Product1CKArr[0] + " " + Product1CKArr[1];
+			var phone = Product1CKArr[3];
+			var address = Product1CKArr[7] + "," + Product1CKArr[8] + "," + Product1CKArr[5] + Product1CKArr[6];
+	
+			document.getElementById("Review_Name_id").innerHTML = name;
+			document.getElementById("Review_Addr_id").innerHTML = address;
+			document.getElementById("Review_Phn_id").innerHTML = phone;
+			document.getElementById("Review_CC_id").innerHTML = phone;
 		}
 	}
 }

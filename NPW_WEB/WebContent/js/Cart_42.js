@@ -6,7 +6,7 @@ $( document ).ready(function() {
 
     var url = window.location.href;
     
-    if(url == '' || url.includes('cart'))
+    if(url == '' || url.includes('cart') || url.includes('review'))
 	{
 		return;
 	}

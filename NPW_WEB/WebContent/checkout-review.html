@@ -25,11 +25,12 @@
     <script src="js/modernizr.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<link href="css/Cart.css" rel="stylesheet" type="text/css" />
-    <script src="js/Products_37.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="css/Cart.css" rel="stylesheet" type="text/css" />
+	<script src="js/Products_37.js"></script>
+	<script src="js/Cart_42.js"></script>
   	<script src="js/Grid_Proc_55.js"></script>
-  	<script src=js/MyCookieProc_55.js></script>
-        
+  	<script src=js/MyCookieProc_57.js></script>
    	<script>
             $(function(){
                 $("#includedContent-header").load("header10.html");
@@ -46,7 +47,7 @@
             $(function(){
                 $("#includedContent-featuredproducts").load("featuredproducts.html");
             });
-
+            
             $(function(){
                 $("#includedContent-sidebar").load("sidebar5.html");
             });
@@ -92,60 +93,28 @@
                     <th></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="product-item"><a class="product-thumb" href="shop-single.html"><img src="img/shop/cart/01.jpg" alt="Product"></a>
-                        <div class="product-info">
-                          <h4 class="product-title"><a href="shop-single.html">Unionbay Park<small>x 1</small></a></h4><span><em>Size:</em> 10.5</span><span><em>Color:</em> Dark Blue</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="text-center text-lg text-medium">$43.90</td>
-                    <td class="text-center"><a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="product-item"><a class="product-thumb" href="shop-single.html"><img src="img/shop/cart/02.jpg" alt="Product"></a>
-                        <div class="product-info">
-                          <h4 class="product-title"><a href="shop-single.html">Daily Fabric Cap<small>x 2</small></a></h4><span><em>Size:</em> XL</span><span><em>Color:</em> Black</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="text-center text-lg text-medium">$24.89</td>
-                    <td class="text-center"><a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="product-item"><a class="product-thumb" href="shop-single.html"><img src="img/shop/cart/03.jpg" alt="Product"></a>
-                        <div class="product-info">
-                          <h4 class="product-title"><a href="shop-single.html">Cole Haan Crossbody<small>x 1</small></a></h4><span><em>Size:</em> -</span><span><em>Color:</em> Turquoise</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="text-center text-lg text-medium">$200.00</td>
-                    <td class="text-center"><a class="btn btn-outline-primary btn-sm" href="cart.html">Edit</a></td>
-                  </tr>
+                <tbody id = "Review_Cart_1">
+                  
                 </tbody>
               </table>
             </div>
             <div class="shopping-cart-footer">
               <div class="column"></div>
-              <div class="column text-lg">Subtotal: <span class="text-medium">$289.68</span></div>
+              <div class="column text-lg">Subtotal: <span class="text-medium" id = "Review_Cart_SubTotal">$289</span></div>
             </div>
             <div class="row padding-top-1x mt-3">
               <div class="col-sm-6">
                 <h5>Shipping to:</h5>
                 <ul class="list-unstyled">
-                  <li><span class="text-muted">Client:</span>Daniel Adams</li>
-                  <li><span class="text-muted">Address:</span>44 Shirley Ave. West Chicago, IL 60185, USA</li>
-                  <li><span class="text-muted">Phone:</span>+1(808) 764 554 330</li>
+                  <li><span class="text-muted">Client:</span><span class="text-muted" id="Review_Name_id">Daniel Adams</span></li>
+                  <li><span class="text-muted">Address:</span><span class="text-muted" id="Review_Addr_id">44 Shirley Ave. West Chicago, IL 60185</span></li>
+                  <li><span class="text-muted">Phone:</span><span class="text-muted" id="Review_Phn_id">+1(808) 764 554 330</span></li>
                 </ul>
               </div>
               <div class="col-sm-6">
                 <h5>Payment method:</h5>
                 <ul class="list-unstyled">
-                  <li><span class="text-muted">Credit Card:</span>**** **** **** 5300</li>
+                  <li><span class="text-muted">Credit Card:</span><span class="text-muted" id="Review_CC_id" >**** **** **** 5300</span></li>
                 </ul>
               </div>
             </div>
