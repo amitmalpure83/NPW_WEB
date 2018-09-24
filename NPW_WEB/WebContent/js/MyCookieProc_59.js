@@ -3,6 +3,7 @@ var expiry = new Date(today.getTime() + 30*24*3600*1000);
 var cookieName = "npwcart";
 var cookieNameAddress = "npwAddr";
 var cookieNameOther = "npwOther";
+var cookieNamePP = "npwPP";
 var subtotal = 0;
 
 $( document ).ready(function() 
@@ -50,7 +51,7 @@ function storeValues(productId)
 	return true;
 }
 
-function setCookie(name,value,isOverwrite) 
+function setCookie(name,value,isOverwrite,expiresInDays) 
 {
 	if(isOverwrite == 'N')
 	{
@@ -65,12 +66,18 @@ function setCookie(name,value,isOverwrite)
 	}
 		
 	var days = 30;
+
+	if(expiresInDays != null)
+	{
+		days = expiresInDays;
+	}
+	
     var expires = "";
     
     if (days) 
     {
         var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
+        date.setTime(date.getTime() + (days*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
     
@@ -409,6 +416,25 @@ function populateAddress()
 	}
 }
 
+function makeePayment()
+{
+	var Product1CK = getCookie(cookieNamePP);
+
+	if(Product1CK)
+	{
+		var Product1CKArr = Product1CK.split(',');
+
+		if(Product1CKArr && Product1CKArr != null && Product1CKArr.length > 0)
+		{
+			var ccnum = Product1CKArr[0];
+			var ccname = Product1CKArr[1];
+			var ccexp = Product1CKArr[2];
+			var ccpin = Product1CKArr[3];
+	
+		}
+	}
+}
+
 function saveAddressCookie()
 {
 	var fName = document.getElementById("checkout-fn").value;
@@ -427,8 +453,21 @@ function saveAddressCookie()
 	{
 		setCookie(cookieNameAddress, Product1CKStr, 'Y');	
 	}
-	
-	setCookie(cookieNameAddress, Product1CKStr, 'Y');
+}
+
+function savePaymentCookie()
+{
+	var cardNumber = document.getElementById("card_number").value;
+	var cardName = document.getElementById("card_name").value;
+	var cardExp = document.getElementById("card_exp").value;
+	var cardPin = document.getElementById("card_pin").value;
+
+	var Product1CKStr = cardNumber + "," + cardName + "," + cardExp + "," + cardPin; 
+
+	if(!Product1CKStr.startsWith(",,,"))
+	{
+		setCookie(cookieNamePP, Product1CKStr, 'Y');	
+	}
 }
 
 function changeShippingCharge(currentCharge)

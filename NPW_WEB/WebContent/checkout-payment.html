@@ -31,14 +31,14 @@
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
 	<script src="js/Products_37.js"></script>
   	<script src="js/Grid_Proc_55.js"></script>
-  	<script src=js/MyCookieProc_58.js></script>
+  	<script src=js/MyCookieProc_59.js></script>
    	<script>
             $(function(){
                 $("#includedContent-header").load("header10.html");
             });
 
             $(function(){
-                $("#includedContent-footer").load("footer5.html");
+                $("#includedContent-footer").load("footer6.html");
             });
             
             $(function(){
@@ -95,20 +95,20 @@
                     <div class="card-wrapper"></div>
                     <form class="interactive-credit-card row">
                       <div class="form-group col-sm-6">
-                        <input class="form-control" type="text" name="number" placeholder="Card Number" required>
+                        <input class="form-control" type="text" name="number" id="card_number" placeholder="Card Number" required>
                       </div>
                       <div class="form-group col-sm-6">
-                        <input class="form-control" type="text" name="name" placeholder="Full Name" required>
+                        <input class="form-control" type="text" name="name" id="card_name" placeholder="Full Name" required>
                       </div>
                       <div class="form-group col-sm-3">
-                        <input class="form-control" type="text" name="expiry" placeholder="MM/YY" required>
+                        <input class="form-control" type="text" name="expiry" id="card_exp" placeholder="MM/YY" required>
                       </div>
                       <div class="form-group col-sm-3">
-                        <input class="form-control" type="text" name="cvc" placeholder="CVC" required>
+                        <input class="form-control" type="text" name="cvc" id="card_pin" placeholder="CVC" required>
                       </div>
-                      <div class="col-sm-6">
+                      <!-- <div class="col-sm-6">
                         <button class="btn btn-outline-primary btn-block margin-top-none" type="submit">Submit</button>
-                      </div>
+                      </div> -->
                     </form>
                   </div>
                 </div>
@@ -157,7 +157,7 @@
             </div> 
             <div class="checkout-footer margin-top-1x">
               <div class="column"><a class="btn btn-outline-secondary" href="checkout-shipping.html"><i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back</span></a></div>
-              <div class="column"><a class="btn btn-primary" href="checkout-review.html"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
+              <div class="column"><a class="btn btn-primary" href="checkout-review.html" onclick="savePaymentCookie();"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
             </div>
           </div>
           <!-- Sidebar          -->
