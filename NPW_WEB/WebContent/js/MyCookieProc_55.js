@@ -10,12 +10,17 @@ $( document ).ready(function()
 	var sPageURL = window.location.search.substring(1);
     var url = window.location.href;
 
+	if(url == '' || url.includes('index') || url.includes('cart')  || url.includes('address') || url.includes('shipping') || url.includes('payment') || url.includes('review'))
+	{
+		setTimeout(populateCartInHome,3000);
+	}
+	
 	if(url == '' || url.includes('index'))
 	{
-		setTimeout(populateCartInHome,5000);
 		return;
-	}
-	else if(url.includes('cart'))
+	} 
+	
+	if(url.includes('cart'))
 	{
 		populateCartInCart();
 	}
@@ -262,7 +267,7 @@ function populateCartInCart()
 	document.getElementById("Cart_SubTotal").innerHTML = "$" + totalCartAmout;
 	subtotal = totalCartAmout;
 	
-	var value = "subTotal=" + subtotal + "shipping=" + 0;
+	var value = "subTotal=" + subtotal + "," + "shipping=" + 0;
 	setCookie(cookieNameOther, value, 'Y');
 }
 
@@ -281,11 +286,12 @@ function populateSideBar()
 		{
 			var subTotalVal = parseInt(subTotalStr.split('=')[1]);
 			var shippingCharge = parseInt(shippingChargeStr.split('=')[1]);
+			subtotal = subTotalVal;
 			
 			document.getElementById("Addr_SubTotal").innerHTML = "$" + subTotalVal;
 			document.getElementById("Addr_Tax").innerHTML = "$" + (subTotalVal*0.1);
 			document.getElementById("Addr_Shipping").innerHTML = "$" + shippingCharge;
-			document.getElementById("Addr_Total").innerHTML = "$" + (subTotalVal + Addr_Shipping + subTotalVal*0.1);
+			document.getElementById("Addr_Total").innerHTML = "$" + (subTotalVal + shippingCharge + subTotalVal*0.1);
 		}
 	}
 }
@@ -345,9 +351,9 @@ function saveAddressCookie()
 	setCookie(cookieNameAddress, Product1CKStr, 'Y');
 }
 
-function changeShippingCharge(shippingCharge)
+function changeShippingCharge(currentCharge)
 {
-	var value = "subTotal=" + subtotal + "shipping=" + shippingCharge;
+	var value = "subTotal=" + subtotal + "," + "shipping=" + currentCharge;
 	
 	setCookie(cookieNameOther, value, 'Y');
 
