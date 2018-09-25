@@ -430,6 +430,8 @@ function makeePayment()
 			var ccname = Product1CKArr[1];
 			var ccexp = Product1CKArr[2];
 			var ccpin = Product1CKArr[3];
+			var pplgn = Product1CKArr[4];
+			var pppsw = Product1CKArr[5];
 	
 		}
 	}
@@ -461,10 +463,12 @@ function savePaymentCookie()
 	var cardName = document.getElementById("card_name").value;
 	var cardExp = document.getElementById("card_exp").value;
 	var cardPin = document.getElementById("card_pin").value;
+	var paypalLogin = document.getElementById("paypal_Login").value;
+	var paypalPassword = document.getElementById("paypal_Login").value;
 
-	var Product1CKStr = cardNumber + "," + cardName + "," + cardExp + "," + cardPin; 
+	var Product1CKStr = cardNumber + "," + cardName + "," + cardExp + "," + cardPin + "," + paypalLogin + "," + paypalPassword; 
 
-	if(!Product1CKStr.startsWith(",,,"))
+	if(!Product1CKStr.startsWith(",,,,"))
 	{
 		setCookie(cookieNamePP, Product1CKStr, 'Y');	
 	}
