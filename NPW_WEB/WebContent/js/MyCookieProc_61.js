@@ -200,7 +200,7 @@ function populateCartInHome()
 			totalCartAmout = totalCartAmout + parseInt(productPrice);
 			
 			cartItemStr += 
-				"<div class=\"dropdown-product-item\"><span class=\"dropdown-product-remove\" href=\"javascript:removeFromCartInHome(" + productId + ");\"><i class=\"icon-cross\"></i></span><a class=\"dropdown-product-thumb\" " +
+				"<div class=\"dropdown-product-item\"><a class=\"dropdown-product-thumb\" " +
 				"href=\"shop-single.html?Product_ID=" + productId + "\"><img src=\"img/shop/products/nameplates/" + productId + "_th01.jpg\" alt=\"Product\"></a>"+
 			    "<div class=\"dropdown-product-info\"><a class=\"dropdown-product-title\" href=\"shop-single.html?Product_ID=" + productId + "\">" + productName + "</a><span class=\"dropdown-product-details\">1 x $" + productPrice + "</span></div> </div>";	
 		}
