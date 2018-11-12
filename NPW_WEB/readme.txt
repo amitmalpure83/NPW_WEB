@@ -26,3 +26,5 @@ FOOTER: ADD EMAIL ADDRESS TO THE LIST
 checkout-address.html: ADD CHECCK FOR MANADATORY FIELDS
 
 SSL certificate
+
+update email address for contact: au email id

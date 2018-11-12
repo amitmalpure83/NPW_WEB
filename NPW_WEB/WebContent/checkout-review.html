@@ -111,16 +111,32 @@
                   <li><span class="text-muted">Phone:</span><span class="text-muted" id="Review_Phn_id">+1(808) 764 554 330</span></li>
                 </ul>
               </div>
+             <!-- 
               <div class="col-sm-6">
                 <h5>Payment method:</h5>
                 <ul class="list-unstyled">
                   <li><span class="text-muted">Credit Card:</span><span class="text-muted" id="Review_CC_id" >**** **** **** 5300</span></li>
                 </ul>
               </div>
+               -->
             </div>
             <div class="checkout-footer margin-top-1x">
-              <div class="column hidden-xs-down"><a class="btn btn-outline-secondary" href="checkout-payment.html"><i class="icon-arrow-left"></i>&nbsp;Back</a></div>
+              <div class="column hidden-xs-down"><a class="btn btn-outline-secondary" href="checkout-shipping.html"><i class="icon-arrow-left"></i>&nbsp;Back</a></div>
               <div class="column"><a class="btn btn-primary" href="checkout-complete.html">Complete Order</a></div>
+              <div id = "my_div_3" class="column">
+				<script
+					src="https://secure.ewaypayments.com/scripts/eCrypt.min.js"
+					class="eway-paynow-button"
+					data-publicapikey="epk-6C5A2CF4-6D61-4255-8FEC-76EFE47CBC6F"
+					data-currency="AUD"
+					data-label="Pay Now: #amount#"
+					data-email="contactus12@nameplateworld.com"
+  					data-invoicedescription="Nameplateworld"
+ 			  		data-email="contactus@nameplateworld.com"
+ 					data-resulturl="http://localhost:8080/NPW_WEB/checkout-complete.html";
+					>
+				</script>
+			</div>
             </div>
           </div>
           <!-- Sidebar          -->

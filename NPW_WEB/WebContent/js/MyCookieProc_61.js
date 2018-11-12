@@ -31,6 +31,8 @@ $( document ).ready(function()
 	}	
 	else if(url.includes('review'))
 	{
+		//document.querySelector('.eway-button').className = "btn btn-primary";
+
 		populateAddressInReview();
 		populateCartInReview();
 	}	
@@ -379,6 +381,13 @@ function populateAddressInReview()
 			document.getElementById("Review_Addr_id").innerHTML = address;
 			document.getElementById("Review_Phn_id").innerHTML = phone;
 			document.getElementById("Review_CC_id").innerHTML = phone;
+		}
+		else
+		{
+			document.getElementById("Review_Name_id").innerHTML = "";
+			document.getElementById("Review_Addr_id").innerHTML = "";
+			document.getElementById("Review_Phn_id").innerHTML = "";
+			document.getElementById("Review_CC_id").innerHTML = "";
 		}
 	}
 }
