@@ -412,7 +412,7 @@ function populateAddressInReview()
 			paynowscript.dataset.email = email;
 
 			//document.querySelector('.eway-button').innerText = "Pay Now ($45.57)";
-			document.querySelector('.eway-button').className = "btn btn-primary";
+			document.querySelector('.eway-button').className = ".eway-button btn btn-primary";
 			//document.querySelector('.eway-button').innerText = "Pay Now ($" + "45.56" + ")";
 
 		}
