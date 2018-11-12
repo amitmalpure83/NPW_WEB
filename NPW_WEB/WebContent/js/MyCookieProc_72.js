@@ -31,17 +31,8 @@ $( document ).ready(function()
 	}	
 	else if(url.includes('review'))
 	{
-		const paynowscript = document.querySelector('.eway-paynow-button');
-		paynowscript.dataset.amount = '1289';
-		paynowscript.dataset.phone = '0412324512';
-		paynowscript.dataset.email = 'ab1c@gmail.com';
-		paynowscript.dataset.label = 'Pay Now1: #amount#';
-
-		document.querySelector('.eway-button').innerText = "Pay Now ($2.36)";
-		document.querySelector('.eway-button').className = "btn btn-primary";
-
-		populateAddressInReview();
 		populateCartInReview();
+		populateAddressInReview();
 	}	
 	
 	if(url.includes('address') || url.includes('shipping') || url.includes('payment') || url.includes('review'))
@@ -280,6 +271,33 @@ function populateCartInReview()
 	document.getElementById("Review_Cart_1").innerHTML = cartItemStr;
 	document.getElementById("Review_Cart_SubTotal").innerHTML = "$" + totalCartAmout;
 	subtotal = totalCartAmout;
+	
+	var Product1CKOther = getCookie(cookieNameOther);
+
+	var Product1CKOtherArr = Product1CKOther.split(',');
+	var finalAmt = 0;
+	
+	if(Product1CKOtherArr && Product1CKOtherArr != null && Product1CKOtherArr.length > 0)
+	{
+		var subTotalStr = Product1CKOtherArr[0];
+		var shippingChargeStr = Product1CKOtherArr[1];
+		
+		if(subTotalStr.includes('subTotal'))
+		{
+			var subTotalVal = parseInt(subTotalStr.split('=')[1]);
+			var shippingCharge = parseInt(shippingChargeStr.split('=')[1]);
+			finalAmt = (subTotalVal + shippingCharge + subTotalVal*0.1);
+
+		}
+	}
+	
+	const paynowscript = document.querySelector('.eway-paynow-button');
+	paynowscript.dataset.amount = (finalAmt * 100);
+	paynowscript.dataset.label = 'Pay Now: #amount#';
+	//paynowscript.innerText = "Pay Now ($" + finalAmt + ")";
+
+	document.querySelector('.eway-button').innerText = "Pay Now ($" + finalAmt + ")";
+
 }
 
 function populateCartInCart()
@@ -382,19 +400,27 @@ function populateAddressInReview()
 		{
 			var name = Product1CKArr[0] + " " + Product1CKArr[1];
 			var phone = Product1CKArr[3];
+			var email = Product1CKArr[2];
 			var address = Product1CKArr[7] + "," + Product1CKArr[8] + "," + Product1CKArr[5] + Product1CKArr[6];
 	
 			document.getElementById("Review_Name_id").innerHTML = name;
 			document.getElementById("Review_Addr_id").innerHTML = address;
 			document.getElementById("Review_Phn_id").innerHTML = phone;
-			document.getElementById("Review_CC_id").innerHTML = phone;
+			
+			const paynowscript = document.querySelector('.eway-paynow-button');
+			paynowscript.dataset.phone = phone;
+			paynowscript.dataset.email = email;
+
+			//document.querySelector('.eway-button').innerText = "Pay Now ($45.57)";
+			document.querySelector('.eway-button').className = "btn btn-primary";
+			//document.querySelector('.eway-button').innerText = "Pay Now ($" + "45.56" + ")";
+
 		}
 		else
 		{
 			document.getElementById("Review_Name_id").innerHTML = "";
 			document.getElementById("Review_Addr_id").innerHTML = "";
 			document.getElementById("Review_Phn_id").innerHTML = "";
-			document.getElementById("Review_CC_id").innerHTML = "";
 		}
 	}
 }
