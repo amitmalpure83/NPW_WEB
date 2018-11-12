@@ -31,7 +31,14 @@ $( document ).ready(function()
 	}	
 	else if(url.includes('review'))
 	{
-		//document.querySelector('.eway-button').className = "btn btn-primary";
+		const paynowscript = document.querySelector('.eway-paynow-button');
+		paynowscript.dataset.amount = '1289';
+		paynowscript.dataset.phone = '0412324512';
+		paynowscript.dataset.email = 'ab1c@gmail.com';
+		paynowscript.dataset.label = 'Pay Now1: #amount#';
+
+		document.querySelector('.eway-button').innerText = "Pay Now ($2.36)";
+		document.querySelector('.eway-button').className = "btn btn-primary";
 
 		populateAddressInReview();
 		populateCartInReview();
