@@ -407,13 +407,17 @@ function populateAddressInReview()
 			document.getElementById("Review_Addr_id").innerHTML = address;
 			document.getElementById("Review_Phn_id").innerHTML = phone;
 			
+			var invoiceTime = new Date().getTime();
+			
 			const paynowscript = document.querySelector('.eway-paynow-button');
 			paynowscript.dataset.phone = phone;
 			paynowscript.dataset.email = email;
-
+			paynowscript.dataset.invoiceref="NPW" + invoiceTime;
+			paynowscript.dataset.invoicedescription="Nameplateworld Australia";
+			paynowscript.dataset.resulturl="http://localhost:8080/NPW_WEB/checkout-complete.html?ref=" + "NPW" + invoiceTime;
 			//document.querySelector('.eway-button').innerText = "Pay Now ($45.57)";
-			document.querySelector('.eway-button').className = ".eway-button btn btn-primary";
-			//document.querySelector('.eway-button').innerText = "Pay Now ($" + "45.56" + ")";
+			document.querySelector('.eway-button').className = ".eway-button";
+			//document.querySelector('.eway-button').className = ".eway-button btn btn-primary";
 
 		}
 		else
