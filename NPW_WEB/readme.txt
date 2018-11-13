@@ -16,7 +16,8 @@ WC
 Pending TBD:
 
 About.html: correct the text
-
+Product Reviews : atleast remove hardcoded
+reward points statement remove
 TC.HTML: CHECCK ALL POLICIES
          CLICKING RIGHT SIDE BAR ITEM SHOULD POINT TO THAT PERTICULAR ITEM ON PAGE
          MENU BAR NOT VISIBLE!!
