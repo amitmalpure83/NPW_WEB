@@ -295,8 +295,8 @@ function populateCartInReview()
 	paynowscript.dataset.amount = (finalAmt * 100);
 	paynowscript.dataset.label = 'Pay Now: #amount#';
 	//paynowscript.innerText = "Pay Now ($" + finalAmt + ")";
-
-	document.querySelector('.eway-button').innerText = "Pay Now ($" + finalAmt + ")";
+	document.querySelector('.eway-button').firstElementChild.innerText = "Pay Now ($" + finalAmt + ")";
+	//document.querySelector('.eway-button').innerText = "Pay Now ($" + finalAmt + ")";
 
 }
 
@@ -416,8 +416,7 @@ function populateAddressInReview()
 			paynowscript.dataset.invoicedescription="Nameplateworld Australia";
 			paynowscript.dataset.resulturl="http://localhost:8080/NPW_WEB/checkout-complete.html?ref=" + "NPW" + invoiceTime;
 			//document.querySelector('.eway-button').innerText = "Pay Now ($45.57)";
-			document.querySelector('.eway-button').className = ".eway-button";
-			//document.querySelector('.eway-button').className = ".eway-button btn btn-primary";
+			document.querySelector('.eway-button').className = ".eway-button btn btn-primary";
 
 		}
 		else
