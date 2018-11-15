@@ -210,7 +210,6 @@ function populateCartInHome()
 		"<div class=\"column\"><a class=\"btn btn-sm btn-block btn-secondary\" href=\"cart.html\">View Cart</a></div>"+
 		"<div class=\"column\"><a class=\"btn btn-sm btn-block btn-success\" href=\"checkout-address.html\">Checkout</a></div></div>";  
 			
-			
 		document.getElementById("cartIndex").innerHTML = document.getElementById("cartIndex").innerHTML + cartItemStr;
 		document.getElementById("cartPrice").innerHTML = "$" + totalCartAmout + "&nbsp;";
 		document.getElementById("cartPrice1").innerHTML = "$" + totalCartAmout;
@@ -494,11 +493,20 @@ function saveAddressCookie()
 	var addr1 = document.getElementById("checkout-address1").value;
 	var addr2 = document.getElementById("checkout-address2").value;
 
-	var Product1CKStr = fName + "," + lName + "," + email + "," + phone + "," + company + "," + city + "," + zip + "," + addr1 + "," + addr2; 
-
-	if(!Product1CKStr.startsWith(",,,"))
+	if(fName != "" && lName != "" && email != "" && phone != "" && city != "" && zip != "" && addr1 != "")
 	{
-		setCookie(cookieNameAddress, Product1CKStr, 'Y');	
+		var Product1CKStr = fName + "," + lName + "," + email + "," + phone + "," + company + "," + city + "," + zip + "," + addr1 + "," + addr2; 
+
+		if(!Product1CKStr.startsWith(",,,"))
+		{
+			setCookie(cookieNameAddress, Product1CKStr, 'Y');	
+		}
+	}
+	else
+	{
+		alert("Please enter all the mandatory fields!!!");
+
+		document.getElementById("chkout_addr").href = "#nothing";
 	}
 }
 

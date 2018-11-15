@@ -29,7 +29,7 @@
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
 	<script src="js/Products_37.js"></script>
   	<script src="js/Grid_Proc_55.js"></script>
-  	<script src="js/MyCookieProc_79.js"></script>
+  	<script src="js/MyCookieProc_80.js"></script>
    	<script>
             $(function(){
                 $("#includedContent-header").load("header10.html");
@@ -92,13 +92,13 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-fn">First Name</label>
-                  <input class="form-control" type="text" id="checkout-fn">
+                  <input class="form-control" type="text" id="checkout-fn" required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-ln">Last Name</label>
-                  <input class="form-control" type="text" id="checkout-ln">
+                  <input class="form-control" type="text" id="checkout-ln" required>
                 </div>
               </div>
             </div>
@@ -106,13 +106,13 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-email">E-mail Address</label>
-                  <input class="form-control" type="email" id="checkout-email">
+                  <input class="form-control" type="email" id="checkout-email" required>
                 </div> 
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-phone">Phone Number</label>
-                  <input class="form-control" type="text" id="checkout-phone">
+                  <input class="form-control" type="text" id="checkout-phone" required>
                 </div>
               </div>
             </div>
@@ -126,7 +126,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-country">Country</label>
-                  <select class="form-control" id="checkout-country">
+                  <select class="form-control" id="checkout-country" required>
                     <!-- <option>Choose country</option> -->
                     <option>Australia</option>                    
                   </select>
@@ -137,13 +137,13 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-city">City</label>
-                  <input class="form-control" type="text" id="checkout-city">
+                  <input class="form-control" type="text" id="checkout-city" required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-zip">ZIP Code</label>
-                  <input class="form-control" type="text" id="checkout-zip">
+                  <input class="form-control" type="text" id="checkout-zip" required=>
                 </div>
               </div>
             </div>
@@ -151,7 +151,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-address1">Address 1</label>
-                  <input class="form-control" type="text" id="checkout-address1">
+                  <input class="form-control" type="text" id="checkout-address1" required>
                 </div>
               </div>
               <div class="col-sm-6">
@@ -171,7 +171,7 @@
             </div>
             <div class="checkout-footer">
               <div class="column"><a class="btn btn-outline-secondary" href="cart.html"><i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back To Cart</span></a></div>
-              <div class="column"><a class="btn btn-primary" href="checkout-shipping.html" onclick="saveAddressCookie();"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
+              <div class="column"><a id = "chkout_addr" class="btn btn-primary" href="checkout-shipping.html" onclick="saveAddressCookie();"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
             </div>
           </div>
 
