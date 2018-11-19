@@ -29,7 +29,7 @@
     <link href="css/Cart.css" rel="stylesheet" type="text/css" />
 	<script src="js/Products_37.js"></script>
   	<script src="js/Grid_Proc_55.js"></script>
-  	<script src="js/MyCookieProc_80.js"></script>
+  	<script src="js/MyCookieProc_82.js"></script>
    	<script>
             $(function(){
                 $("#includedContent-header").load("header10.html");
@@ -84,6 +84,8 @@
       <div class="container padding-bottom-3x mb-2">
         <div class="row">
           <!-- Checkout Adress-->
+          
+          <form action="checkout-shipping.html" name="addr_form">
           <div class="col-xl-9 col-lg-8">
             <div class="checkout-steps"><a href="checkout-review.html">4. Review</a><a href="checkout-payment.html"><span class="angle"></span>3. Payment</a><a href="checkout-shipping.html"><span class="angle"></span>2. Shipping</a><a class="active" href="checkout-address.html"><span class="angle"></span>1. Address</a></div>
             <h4>Billing Address</h4>
@@ -143,7 +145,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="checkout-zip">ZIP Code</label>
-                  <input class="form-control" type="text" id="checkout-zip" required=>
+                  <input class="form-control" type="text" id="checkout-zip" required>
                 </div>
               </div>
             </div>
@@ -171,10 +173,13 @@
             </div>
             <div class="checkout-footer">
               <div class="column"><a class="btn btn-outline-secondary" href="cart.html"><i class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back To Cart</span></a></div>
-              <div class="column"><a id = "chkout_addr" class="btn btn-primary" href="checkout-shipping.html" onclick="saveAddressCookie();"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div>
+              <!-- <div class="column"><a id = "chkout_addr" class="btn btn-primary" href="checkout-shipping.html" onclick="saveAddressCookie();"><span class="hidden-xs-down">Continue&nbsp;</span><i class="icon-arrow-right"></i></a></div> -->
+              <div class="column"><input type="submit" value="Continue&nbsp;" id = "chkout_addr" class="btn btn-primary" onclick="saveAddressCookie();"></div>
             </div>
           </div>
-
+          
+		</form>
+		
           <!-- Sidebar          -->
           <div class="col-xl-3 col-lg-4" id="includedContent-sidebar"></div>
 

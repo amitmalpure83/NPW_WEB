@@ -504,9 +504,8 @@ function saveAddressCookie()
 	}
 	else
 	{
-		alert("Please enter all the mandatory fields!!!");
-
-		document.getElementById("chkout_addr").href = "#nothing";
+		//alert("Please enter all the mandatory fields!!!!!");
+		//document.getElementById("chkout_addr").href = "#nothing";		
 	}
 }
 

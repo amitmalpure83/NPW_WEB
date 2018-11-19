@@ -19,13 +19,9 @@ About.html: correct the text
 Product Reviews : atleast remove hardcoded
 reward points statement remove
 TC.HTML: CHECCK ALL POLICIES
-         CLICKING RIGHT SIDE BAR ITEM SHOULD POINT TO THAT PERTICULAR ITEM ON PAGE
          MENU BAR NOT VISIBLE!!
 
 FOOTER: ADD EMAIL ADDRESS TO THE LIST
-
 checkout-address.html: ADD CHECCK FOR MANADATORY FIELDS
-
 SSL certificate
-
 update email address for contact: au email id
